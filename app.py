@@ -12,7 +12,7 @@ from WheelsOfName.wheel import WheelOfNames
 from ToolDownloader.downloader import ToolDownloader
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = 'uploads'
+app.config['UPLOAD_FOLDER'] = os.path.join(os.path.dirname(__file__), 'uploads')
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max file size
 
 # Ensure upload folder exists
@@ -23,6 +23,18 @@ if not os.path.exists(app.config['UPLOAD_FOLDER']):
 data_dir = os.path.join(os.path.dirname(__file__), 'data')
 if not os.path.exists(data_dir):
     os.makedirs(data_dir)
+
+# Tạo các thư mục cần thiết
+required_dirs = [
+    'uploads',
+    'data',
+    'static/sounds',
+    'YouTubeToMP3/downloads',
+    'YouTubeToMP3/temp'
+]
+
+for directory in required_dirs:
+    os.makedirs(directory, exist_ok=True)
 
 # Khởi tạo SQL converter
 sql_converter = SQLConverter()
@@ -44,6 +56,22 @@ wheel_of_names = WheelOfNames()
 
 # Thêm khởi tạo
 tool_downloader = ToolDownloader()
+
+def ensure_json_files():
+    json_files = {
+        'data/tools.json': [],
+        'data/wheels.json': [],
+        # Thêm các file JSON khác nếu cần
+    }
+    
+    for filepath, default_content in json_files.items():
+        if not os.path.exists(filepath):
+            os.makedirs(os.path.dirname(filepath), exist_ok=True)
+            with open(filepath, 'w') as f:
+                json.dump(default_content, f)
+
+# Gọi function khi khởi động app
+ensure_json_files()
 
 @app.route('/')
 def index():
@@ -357,6 +385,14 @@ def tool_downloader_tool():
     tools = tool_downloader.get_tools()
     categories = tool_downloader.get_categories()
     return render_template('tools/tool_downloader.html', tools=tools, categories=categories)
+
+@app.errorhandler(404)
+def not_found_error(error):
+    return render_template('404.html'), 404
+
+@app.errorhandler(500)
+def internal_error(error):
+    return render_template('500.html'), 500
 
 if __name__ == '__main__':
     # Development
