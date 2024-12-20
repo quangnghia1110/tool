@@ -7,20 +7,59 @@ python-dotenv==0.19.0
 # Web scraping & networking
 requests>=2.31.0
 beautifulsoup4==4.9.3
-selenium>=4.0.0
+selenium>=4.16.0
 selenium-wire==5.1.0
 webdriver-manager==4.0.1
+urllib3>=1.26.5,<2.0.0  # For rasa-sdk compatibility
 
-# Image processing
-Pillow==8.3.2
-
-# Media processing
+# Image processing & Media
+Pillow>=10.4.0
 yt-dlp==2023.12.30
 pytube==15.0.0
 moviepy==1.0.3
 
-# Security
-cryptography>=41.0.0 
+# Database & SQL
+mysql-connector-python>=8.0.0
+pymysql>=1.0.0
+sqlalchemy>=1.4.0
 
-jsbeautifier==1.15.1
-cssbeautifier==1.15.1
+# Data processing
+numpy>=1.20.3  # For pandas & streamlit compatibility
+pandas>=2.0.3
+protobuf>=3.9.2,<3.20  # For tensorflow & tensorboard
+
+# Markdown & Documentation
+markdown>=3.3.0
+pygments>=2.10.0
+markdown-it-py>=2.0.0
+python-docx>=1.1.2
+
+# Dependencies versions
+attrs>=22.2.0  # For referencing compatibility
+typing-extensions>=4.12.2  # For pydantic & others
+packaging>=20.9
+
+# Security & Encryption
+cryptography>=41.0.0
+pyOpenSSL>=20.0.0
+
+# HTML & XML processing
+lxml>=4.9.0
+html5lib>=1.1
+
+# Code formatting
+black>=22.12.0
+autopep8>=1.5.0
+yapf>=0.32.0
+
+# Browser automation
+chromedriver-autoinstaller>=0.6.2
+undetected-chromedriver>=3.0.0
+
+# Utility packages
+python-magic>=0.4.0
+tqdm>=4.65.0
+validators>=0.20.0
+
+
+
