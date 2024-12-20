@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    <h2 class="mb-4">Markdown Editor</h2>
+    <div class="d-flex flex-column h-100">
+        <!-- Markdown Input Section -->
+        <div class="card mb-3">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span>Markdown Input</span>
+                <button class="btn btn-sm btn-primary" id="exportBtn">
+                    <i class="fas fa-download"></i> Export MD
+                </button>
+            </div>
+            <div class="card-body p-0">
+                <textarea id="markdownInput" class="form-control border-0"
+                          style="resize: none; height: 300px;"
+                          placeholder="Enter your markdown here..."></textarea>
+            </div>
+        </div>
+
+        <!-- Preview Section -->
+        <div class="card flex-grow-1">
+            <div class="card-header">
+                <span>Preview</span>
+            </div>
+            <div class="card-body markdown-preview" id="preview">
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.markdown-preview {
+    background: white;
+    padding: 1rem;
+    min-height: 400px;
+    overflow-y: auto;
+}
+
+.markdown-preview h1,
+.markdown-preview h2,
+.markdown-preview h3,
+.markdown-preview h4,
+.markdown-preview h5,
+.markdown-preview h6 {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.markdown-preview code {
+    background: #f8f9fa;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+}
+
+.markdown-preview pre {
+    background: #f8f9fa;
+    padding: 1em;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+.markdown-preview blockquote {
+    border-left: 4px solid #dee2e6;
+    padding-left: 1em;
+    margin-left: 0;
+    color: #6c757d;
+}
+
+.markdown-preview table {
+    width: 100%;
+    margin-bottom: 1rem;
+    border-collapse: collapse;
+}
+
+.markdown-preview th,
+.markdown-preview td {
+    padding: 0.5rem;
+    border: 1px solid #dee2e6;
+}
+
+/* Custom scrollbar */
+#markdownInput::-webkit-scrollbar,
+.markdown-preview::-webkit-scrollbar {
+    width: 8px;
+}
+
+#markdownInput::-webkit-scrollbar-track,
+.markdown-preview::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+#markdownInput::-webkit-scrollbar-thumb,
+.markdown-preview::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+#markdownInput::-webkit-scrollbar-thumb:hover,
+.markdown-preview::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+</style>
+
+<script>
+document.getElementById('markdownInput').addEventListener('input', debounce(convertMarkdown, 500));
+
+document.getElementById('exportBtn').addEventListener('click', function() {
+    const markdown = document.getElementById('markdownInput').value;
+    if (!markdown) {
+        alert('Please enter some markdown content first');
+        return;
+    }
+    
+    // Create blob and download
+    const blob = new Blob([markdown], { type: 'text/markdown' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'document.md';
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
+});
+
+function convertMarkdown() {
+    const input = document.getElementById('markdownInput').value;
+    fetch('/tools/markdown-editor/convert', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({markdown: input})
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.html) {
+            document.getElementById('preview').innerHTML = data.html;
+        } else {
+            alert(data.error || 'An error occurred');
+        }
+    })
+    .catch(error => {
+        alert('Error converting markdown');
+    });
+}
+
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+</script>
+{% endblock %} 

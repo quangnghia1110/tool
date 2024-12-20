@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    <h2 class="mb-4">Website Checker</h2>
+    
+    <!-- Input Form -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <form id="checkerForm">
+                <div class="input-group">
+                    <input type="url" class="form-control" id="websiteUrl" 
+                           placeholder="Enter website URL (e.g., https://example.com)" required>
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-search"></i> Analyze
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Results Section -->
+    <div id="results" style="display: none;">
+        <!-- Basic Info -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Basic Information</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Title:</strong> <span id="pageTitle"></span></p>
+                        <p><strong>Description:</strong> <span id="metaDescription"></span></p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Response Time:</strong> <span id="responseTime"></span></p>
+                        <p><strong>Page Size:</strong> <span id="pageSize"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Analysis -->
+        <div class="row">
+            <!-- Headings -->
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h5 class="mb-0">Headings Structure</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="headings"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technologies -->
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h5 class="mb-0">Technologies Used</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="technologies"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Links and Images -->
+        <div class="row">
+            <!-- Links Analysis -->
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h5 class="mb-0">Links Analysis</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="links"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Images Analysis -->
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h5 class="mb-0">Images Analysis</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="images"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Security Headers -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Security Headers</h5>
+            </div>
+            <div class="card-body">
+                <div id="security"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.getElementById('checkerForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const url = document.getElementById('websiteUrl').value;
+    const results = document.getElementById('results');
+    
+    try {
+        results.style.display = 'none';
+        
+        const response = await fetch('/tools/check-website', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({url: url})
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok) {
+            // Update Basic Info
+            document.getElementById('pageTitle').textContent = data.title || 'N/A';
+            document.getElementById('metaDescription').textContent = data.meta_description || 'N/A';
+            document.getElementById('responseTime').textContent = `${data.performance.response_time.toFixed(2)}s`;
+            document.getElementById('pageSize').textContent = `${(data.performance.content_size / 1024).toFixed(2)} KB`;
+
+            // Update Headings
+            const headingsHtml = Object.entries(data.headings)
+                .map(([tag, items]) => `
+                    <h6>${tag.toUpperCase()} (${items.length})</h6>
+                    <ul class="list-unstyled">
+                        ${items.map(item => `<li>• ${item}</li>`).join('')}
+                    </ul>
+                `).join('');
+            document.getElementById('headings').innerHTML = headingsHtml;
+
+            // Update Technologies
+            document.getElementById('technologies').innerHTML = `
+                <ul class="list-unstyled">
+                    ${data.technologies.map(tech => `<li>• ${tech}</li>`).join('')}
+                </ul>
+            `;
+
+            // Update Links
+            const linksHtml = `
+                <p>Total Links: ${data.links.length}</p>
+                <p>Internal Links: ${data.links.filter(l => l.is_internal).length}</p>
+                <p>External Links: ${data.links.filter(l => !l.is_internal).length}</p>
+            `;
+            document.getElementById('links').innerHTML = linksHtml;
+
+            // Update Images
+            const imagesHtml = `
+                <p>Total Images: ${data.images.length}</p>
+                <p>Images without alt text: ${data.images.filter(img => !img.alt).length}</p>
+            `;
+            document.getElementById('images').innerHTML = imagesHtml;
+
+            // Update Security Headers
+            const securityHtml = Object.entries(data.security)
+                .map(([header, value]) => `
+                    <div class="mb-2">
+                        <strong>${header}:</strong>
+                        <span class="badge ${value ? 'bg-success' : 'bg-danger'}">
+                            ${value || 'Not Set'}
+                        </span>
+                    </div>
+                `).join('');
+            document.getElementById('security').innerHTML = securityHtml;
+
+            results.style.display = 'block';
+        } else {
+            throw new Error(data.error || 'An error occurred');
+        }
+    } catch (error) {
+        alert(error.message);
+    }
+});
+</script>
+{% endblock %} 

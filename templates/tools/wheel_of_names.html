@@ -1,0 +1,601 @@
+{% extends "base.html" %}
+
+{% block head %}
+<!-- Thêm Bootstrap CSS và JS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<style>
+    #wheelCanvas {
+        border: 2px solid #ccc;
+        border-radius: 50%;
+        margin: 20px auto;
+        display: block;
+    }
+    
+    .wheel-container {
+        position: relative;
+        width: 400px;
+        margin: 0 auto;
+    }
+    
+    .wheel-arrow {
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        border-top: 40px solid #dc3545;
+        z-index: 1;
+    }
+</style>
+
+<div class="container-fluid mt-4">
+    <div class="row">
+        <!-- Wheel Creation Form -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Create New Wheel</h5>
+                </div>
+                <div class="card-body">
+                    <form id="wheelForm">
+                        <div class="mb-3">
+                            <label for="wheelName" class="form-label">Wheel Name</label>
+                            <input type="text" class="form-control" id="wheelName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="wheelItems" class="form-label">Items (one per line)</label>
+                            <textarea class="form-control" id="wheelItems" rows="5" required></textarea>
+                            <small class="text-muted">Enter each item on a new line</small>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Create Wheel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wheel Display -->
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Wheel of Names</h5>
+                    <div class="d-flex align-items-center">
+                        <select id="wheelSelector" class="form-select me-2" style="width: auto;">
+                            <option value="">Select a wheel...</option>
+                        </select>
+                        <button id="deleteWheelBtn" class="btn btn-danger" style="display: none;">
+                            <i class="fas fa-trash"></i> Delete Wheel
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body text-center">
+                    <div class="wheel-container">
+                        <div class="wheel-arrow"></div>
+                        <canvas id="wheelCanvas" width="400" height="400"></canvas>
+                    </div>
+                    <div class="mt-3">
+                        <button id="spinButton" class="btn btn-lg btn-success" disabled>
+                            <i class="fas fa-sync-alt"></i> SPIN
+                        </button>
+                    </div>
+                    <!-- Result Modal -->
+                    <div class="modal fade" id="resultModal" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header bg-success text-white">
+                                    <h5 class="modal-title">Winner!</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body text-center">
+                                    <h2 id="resultText" class="mb-4"></h2>
+                                    <div class="d-flex justify-content-center">
+                                        <button type="button" class="btn btn-danger me-2" id="removeWinnerBtn">
+                                            <i class="fas fa-user-minus"></i> Remove Winner
+                                        </button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                            <i class="fas fa-times"></i> Close
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Alert Modal -->
+                    <div class="modal fade" id="alertModal" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="alertTitle">Notification</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="text-center mb-4">
+                                        <i id="alertIcon" class="fas fa-info-circle fa-3x mb-3"></i>
+                                        <p id="alertMessage" class="lead mb-0"></p>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Confirm Modal -->
+                    <div class="modal fade" id="confirmModal" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="confirmTitle">Confirmation</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="text-center mb-4">
+                                        <i class="fas fa-question-circle fa-3x text-warning mb-3"></i>
+                                        <p id="confirmMessage" class="lead mb-0"></p>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <button type="button" class="btn btn-danger" id="confirmYesBtn">Yes, proceed</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- History -->
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Spin History</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Result</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody id="historyTable">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Thêm audio elements -->
+<audio id="spinSound" preload="auto">
+    <source src="{{ url_for('static', filename='sounds/spinning.mp3') }}" type="audio/mpeg">
+</audio>
+<audio id="winSound" preload="auto">
+    <source src="{{ url_for('static', filename='sounds/win.mp3') }}" type="audio/mpeg">
+</audio>
+
+<script>
+let currentWheel = null;
+let isSpinning = false;
+let currentWinner = null;
+let confirmCallback = null;
+let tadaSound = null; // Thêm biến global để lưu âm thanh tada
+
+// Canvas setup
+const canvas = document.getElementById('wheelCanvas');
+const ctx = canvas.getContext('2d');
+const centerX = canvas.width / 2;
+const centerY = canvas.height / 2;
+const radius = Math.min(centerX, centerY) - 10;
+
+// Initialize Bootstrap modals
+const resultModal = new bootstrap.Modal(document.getElementById('resultModal'));
+const alertModal = new bootstrap.Modal(document.getElementById('alertModal'));
+const confirmModal = new bootstrap.Modal(document.getElementById('confirmModal'));
+window.resultModal = resultModal;  // Make it globally accessible
+
+// Helper functions for showing modals
+function showAlert(message, type = 'info') {
+    const iconMap = {
+        success: 'fa-check-circle text-success',
+        error: 'fa-times-circle text-danger',
+        warning: 'fa-exclamation-circle text-warning',
+        info: 'fa-info-circle text-info'
+    };
+    
+    document.getElementById('alertTitle').textContent = type.charAt(0).toUpperCase() + type.slice(1);
+    document.getElementById('alertIcon').className = `fas ${iconMap[type]} fa-3x mb-3`;
+    document.getElementById('alertMessage').textContent = message;
+    alertModal.show();
+}
+
+function showConfirm(message, title, callback) {
+    document.getElementById('confirmTitle').textContent = title;
+    document.getElementById('confirmMessage').textContent = message;
+    confirmCallback = callback;
+    confirmModal.show();
+}
+
+// Handle confirm modal actions
+document.getElementById('confirmYesBtn').addEventListener('click', function() {
+    confirmModal.hide();
+    if (confirmCallback) {
+        confirmCallback();
+        confirmCallback = null;
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    loadWheels();
+    
+    document.getElementById('wheelForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        createWheel();
+    });
+    
+    document.getElementById('wheelSelector').addEventListener('change', function() {
+        loadWheel(this.value);
+    });
+    
+    document.getElementById('spinButton').addEventListener('click', function() {
+        if (!isSpinning) {
+            spinWheel();
+        }
+    });
+    
+    // Thêm xử lý cho nút Delete Wheel
+    document.getElementById('deleteWheelBtn').addEventListener('click', function() {
+        if (!currentWheel) return;
+        
+        showConfirm(
+            `Are you sure you want to delete wheel "${currentWheel.name}"?`,
+            'Delete Wheel',
+            function() {
+                fetch(`/tools/wheel-of-names/delete/${currentWheel.id}`, {
+                    method: 'POST'
+                })
+                .then(response => response.json())
+                .then(result => {
+                    if (result.success) {
+                        // Reset UI
+                        currentWheel = null;
+                        document.getElementById('spinButton').disabled = true;
+                        document.getElementById('deleteWheelBtn').style.display = 'none';
+                        drawEmptyWheel();
+                        updateHistory();
+                        loadWheels();
+                        showAlert('Wheel deleted successfully', 'success');
+                    } else {
+                        showAlert(result.message, 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error("Error deleting wheel:", error);
+                    showAlert('Error deleting wheel. Please check console for details.', 'error');
+                });
+            }
+        );
+    });
+});
+
+function loadWheels() {
+    fetch('/tools/wheel-of-names/list/')
+        .then(response => response.json())
+        .then(wheels => {
+            console.log("Loaded wheels:", wheels);  // Debug print
+            const selector = document.getElementById('wheelSelector');
+            selector.innerHTML = '<option value="">Select a wheel...</option>';
+            
+            wheels.forEach(wheel => {
+                const option = document.createElement('option');
+                option.value = wheel.id;
+                option.textContent = wheel.name;
+                selector.appendChild(option);
+            });
+            
+            if (wheels.length === 1) {
+                selector.value = wheels[0].id;
+                loadWheel(wheels[0].id);
+            }
+        })
+        .catch(error => {
+            console.error("Error loading wheels:", error);
+            alert('Error loading wheels. Please check console for details.');
+        });
+}
+
+function createWheel() {
+    const name = document.getElementById('wheelName').value;
+    const items = document.getElementById('wheelItems').value
+        .split('\n')
+        .map(item => item.trim())
+        .filter(item => item.length > 0);
+    
+    if (items.length < 2) {
+        showAlert('Please enter at least 2 items', 'warning');
+        return;
+    }
+    
+    const data = { name, items };
+    console.log("Sending data:", data);  // Debug print
+    
+    fetch('/tools/wheel-of-names/create/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+        console.log("Create result:", result);  // Debug print
+        if (result.success) {
+            const wheelId = result.message;
+            
+            document.getElementById('wheelForm').reset();
+            
+            fetch('/tools/wheel-of-names/list/')
+                .then(response => response.json())
+                .then(wheels => {
+                    const selector = document.getElementById('wheelSelector');
+                    selector.innerHTML = '<option value="">Select a wheel...</option>';
+                    
+                    wheels.forEach(wheel => {
+                        const option = document.createElement('option');
+                        option.value = wheel.id;
+                        option.textContent = wheel.name;
+                        selector.appendChild(option);
+                        
+                        if (wheel.id === wheelId) {
+                            selector.value = wheelId;
+                        }
+                    });
+                    
+                    loadWheel(wheelId);
+                });
+        } else {
+            alert('Error: ' + result.message);
+        }
+    })
+    .catch(error => {
+        console.error("Error creating wheel:", error);
+        alert('Error creating wheel. Please check console for details.');
+    });
+}
+
+function loadWheel(wheelId) {
+    if (!wheelId) {
+        currentWheel = null;
+        document.getElementById('spinButton').disabled = true;
+        document.getElementById('deleteWheelBtn').style.display = 'none';
+        drawEmptyWheel();
+        return;
+    }
+    
+    fetch(`/tools/wheel-of-names/get/${wheelId}`)
+        .then(response => response.json())
+        .then(wheel => {
+            currentWheel = wheel;
+            document.getElementById('spinButton').disabled = false;
+            document.getElementById('deleteWheelBtn').style.display = 'block';
+            drawWheel();
+            updateHistory();
+        });
+}
+
+function drawEmptyWheel() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+    ctx.strokeStyle = '#ccc';
+    ctx.stroke();
+    ctx.fillStyle = '#f8f9fa';
+    ctx.fill();
+}
+
+function drawWheel(rotation = 0) {
+    if (!currentWheel || !currentWheel.items.length) {
+        drawEmptyWheel();
+        return;
+    }
+    
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Draw outer circle
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+    ctx.strokeStyle = '#333';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    
+    const sliceAngle = (2 * Math.PI) / currentWheel.items.length;
+    const colors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40'];
+    
+    currentWheel.items.forEach((item, index) => {
+        const startAngle = rotation + index * sliceAngle;
+        const endAngle = startAngle + sliceAngle;
+        
+        // Draw slice
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY);
+        ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+        ctx.closePath();
+        ctx.fillStyle = colors[index % colors.length];
+        ctx.fill();
+        ctx.strokeStyle = '#fff';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        
+        // Draw text
+        ctx.save();
+        ctx.translate(centerX, centerY);
+        ctx.rotate(startAngle + sliceAngle / 2);
+        ctx.textAlign = 'right';
+        ctx.fillStyle = '#fff';
+        ctx.font = 'bold 16px Arial';
+        // Adjust text position based on length
+        const textRadius = radius - 30;
+        ctx.fillText(item, textRadius, 0);
+        ctx.restore();
+    });
+    
+    // Draw center circle
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, 20, 0, 2 * Math.PI);
+    ctx.fillStyle = '#fff';
+    ctx.fill();
+    ctx.strokeStyle = '#333';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+}
+
+function spinWheel() {
+    if (!currentWheel || isSpinning) return;
+    isSpinning = true;
+    document.getElementById('spinButton').disabled = true;
+    
+    // Play spinning sound
+    const spinSound = document.getElementById('spinSound');
+    spinSound.currentTime = 0;
+    spinSound.play();
+    
+    const startTime = Date.now();
+    const spinDuration = 5000; // 5 seconds
+    
+    function animate() {
+        const elapsed = Date.now() - startTime;
+        const progress = Math.min(elapsed / spinDuration, 1);
+        
+        // Easing function for smooth deceleration
+        const easing = 1 - Math.pow(1 - progress, 3);
+        rotation = easing * (Math.PI * 20); // 10 full rotations
+        
+        drawWheel(rotation);
+        
+        if (progress < 1) {
+            requestAnimationFrame(animate);
+        } else {
+            // Stop spinning sound
+            spinSound.pause();
+            spinSound.currentTime = 0;
+            
+            // Get result from server
+            fetch(`/tools/wheel-of-names/spin/${currentWheel.id}`)
+                .then(response => response.json())
+                .then(result => {
+                    if (result.success) {
+                        currentWinner = result.message;
+                        
+                        // Play win sound first
+                        const winSound = document.getElementById('winSound');
+                        winSound.currentTime = 0;
+                        winSound.play();
+                        
+                        // Wait a short moment before showing result
+                        setTimeout(() => {
+                            showResult(result.message);
+                            loadWheel(currentWheel.id);
+                        }, 500); // Delay 500ms
+                    }
+                    isSpinning = false;
+                    document.getElementById('spinButton').disabled = false;
+                });
+        }
+    }
+    
+    animate();
+}
+
+function showResult(winner) {
+    // Play tada sound
+    tadaSound = new Audio('/static/sounds/tada.mp3');
+    tadaSound.play();
+    
+    // Show modal with result
+    document.getElementById('resultText').textContent = winner;
+    
+    // Get modal element
+    const modalElement = document.getElementById('resultModal');
+    
+    // Use Bootstrap modal method
+    const resultModal = new bootstrap.Modal(modalElement);
+    resultModal.show();
+    
+    // Stop tada sound when modal is hidden
+    modalElement.addEventListener('hidden.bs.modal', function () {
+        if (tadaSound) {
+            tadaSound.pause();
+            tadaSound.currentTime = 0;
+            tadaSound = null;
+        }
+    });
+}
+
+// Handle remove winner
+document.getElementById('removeWinnerBtn').addEventListener('click', function() {
+    if (!currentWheel || !currentWinner) return;
+    
+    // Stop tada sound if playing
+    if (tadaSound) {
+        tadaSound.pause();
+        tadaSound.currentTime = 0;
+        tadaSound = null;
+    }
+    
+    showConfirm(
+        `Are you sure you want to remove "${currentWinner}" from the wheel?`,
+        'Remove Winner',
+        function() {
+            // Remove winner from items
+            const updatedItems = currentWheel.items.filter(item => item !== currentWinner);
+            
+            // Update wheel on server
+            fetch(`/tools/wheel-of-names/update/${currentWheel.id}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: currentWheel.name,
+                    items: updatedItems
+                })
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.success) {
+                    loadWheel(currentWheel.id); // Reload wheel
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('resultModal'));
+                    modal.hide();
+                }
+            });
+        }
+    );
+});
+
+function updateHistory() {
+    const historyTable = document.getElementById('historyTable');
+    historyTable.innerHTML = '';
+    
+    if (currentWheel && currentWheel.history) {
+        currentWheel.history.slice().reverse().forEach(entry => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${entry.result}</td>
+                <td>${new Date(entry.timestamp).toLocaleString()}</td>
+            `;
+            historyTable.appendChild(tr);
+        });
+    }
+}
+</script>
+{% endblock %} 

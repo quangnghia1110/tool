@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    <h2 class="mb-4">API Counter</h2>
+    <div class="card">
+        <div class="card-body">
+            <form id="jsonForm" enctype="multipart/form-data">
+                <div class="form-group mb-3">
+                    <label for="jsonFile">Upload Postman Collection JSON:</label>
+                    <input type="file" class="form-control" id="jsonFile" name="file" 
+                           accept=".json" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Count APIs</button>
+            </form>
+
+            <div id="result" class="mt-3" style="display: none;">
+                <h5>Results:</h5>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Total APIs</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resultList">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="error" class="mt-3 alert alert-danger" style="display: none;"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.getElementById('jsonForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    const result = document.getElementById('result');
+    const resultList = document.getElementById('resultList');
+    const errorDiv = document.getElementById('error');
+    
+    // Reset displays
+    result.style.display = 'none';
+    errorDiv.style.display = 'none';
+    
+    try {
+        const response = await fetch('/tools/count-api-json', {
+            method: 'POST',
+            body: formData
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok) {
+            resultList.innerHTML = `
+                <tr>
+                    <td>${data.total_apis}</td>
+                    <td><pre>${JSON.stringify(data.details, null, 2)}</pre></td>
+                </tr>
+            `;
+            result.style.display = 'block';
+        } else {
+            throw new Error(data.error);
+        }
+    } catch (error) {
+        errorDiv.textContent = error.message;
+        errorDiv.style.display = 'block';
+    }
+});
+</script>
+{% endblock %} 

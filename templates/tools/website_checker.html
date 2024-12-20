@@ -1,0 +1,248 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    <h2 class="mb-4">Website Checker</h2>
+    
+    <!-- Input Form -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <form id="checkerForm">
+                <div class="input-group">
+                    <input type="url" class="form-control" id="websiteUrl" 
+                           placeholder="Enter website URL (e.g., https://example.com)" required>
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-search"></i> Check Website
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Loading indicator -->
+    <div id="loading" style="display: none;" class="text-center my-4">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="mt-2">Analyzing website...</p>
+    </div>
+
+    <!-- Results Section -->
+    <div id="results" style="display: none;">
+        <!-- Basic Info -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Basic Information</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Title:</strong> <span id="siteTitle"></span></p>
+                        <p><strong>Description:</strong> <span id="siteDescription"></span></p>
+                        <p><strong>Server:</strong> <span id="serverInfo"></span></p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Response Time:</strong> <span id="responseTime"></span></p>
+                        <p><strong>SSL Certificate:</strong> <span id="sslStatus"></span></p>
+                        <p><strong>Content Type:</strong> <span id="contentType"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Security Check -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Security Analysis</h5>
+            </div>
+            <div class="card-body">
+                <div id="securityChecks">
+                    <!-- Security items will be added here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Performance -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Performance Metrics</h5>
+            </div>
+            <div class="card-body">
+                <div id="performanceMetrics">
+                    <!-- Performance metrics will be added here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- SEO Analysis -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">SEO Analysis</h5>
+            </div>
+            <div class="card-body">
+                <div id="seoAnalysis">
+                    <!-- SEO items will be added here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Screenshots Section -->
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Website Screenshots</h5>
+                <button class="btn btn-success" id="exportBtn">
+                    <i class="fas fa-download"></i> Export All Screenshots
+                </button>
+            </div>
+            <div class="screenshots-container">
+                <!-- Screenshots will be added here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.check-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+}
+
+.check-item i {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+}
+
+.check-item.success {
+    background-color: #d4edda;
+}
+
+.check-item.warning {
+    background-color: #fff3cd;
+}
+
+.check-item.danger {
+    background-color: #f8d7da;
+}
+
+.metric-item {
+    padding: 1rem;
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+    background-color: #f8f9fa;
+}
+
+.metric-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.screenshots-container img {
+    width: 100%;
+    margin-bottom: 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+}
+</style>
+
+<script>
+document.getElementById('checkerForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const url = document.getElementById('websiteUrl').value;
+    const loading = document.getElementById('loading');
+    const results = document.getElementById('results');
+    
+    try {
+        loading.style.display = 'block';
+        results.style.display = 'none';
+        
+        const response = await fetch('/tools/website-checker/analyze', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({url: url})
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok) {
+            // Update Basic Info
+            document.getElementById('siteTitle').textContent = data.title || 'N/A';
+            document.getElementById('siteDescription').textContent = data.description || 'N/A';
+            document.getElementById('serverInfo').textContent = data.server || 'N/A';
+            document.getElementById('responseTime').textContent = `${data.responseTime}ms`;
+            document.getElementById('sslStatus').textContent = data.ssl ? 'Valid' : 'Not Found';
+            document.getElementById('contentType').textContent = data.contentType || 'N/A';
+
+            // Update Security Checks
+            const securityChecks = document.getElementById('securityChecks');
+            securityChecks.innerHTML = '';
+            data.security.forEach(check => {
+                securityChecks.innerHTML += `
+                    <div class="check-item ${check.status}">
+                        <i class="fas ${check.status === 'success' ? 'fa-check-circle text-success' : 
+                                      check.status === 'warning' ? 'fa-exclamation-circle text-warning' : 
+                                      'fa-times-circle text-danger'}"></i>
+                        <div>
+                            <h6 class="mb-1">${check.name}</h6>
+                            <p class="mb-0">${check.message}</p>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Update Performance Metrics
+            const performanceMetrics = document.getElementById('performanceMetrics');
+            performanceMetrics.innerHTML = '';
+            Object.entries(data.performance).forEach(([key, value]) => {
+                performanceMetrics.innerHTML += `
+                    <div class="metric-item">
+                        <h6>${key}</h6>
+                        <div class="metric-value">${value}</div>
+                    </div>
+                `;
+            });
+
+            // Update SEO Analysis
+            const seoAnalysis = document.getElementById('seoAnalysis');
+            seoAnalysis.innerHTML = '';
+            data.seo.forEach(item => {
+                seoAnalysis.innerHTML += `
+                    <div class="check-item ${item.status}">
+                        <i class="fas ${item.status === 'success' ? 'fa-check-circle text-success' : 
+                                      item.status === 'warning' ? 'fa-exclamation-circle text-warning' : 
+                                      'fa-times-circle text-danger'}"></i>
+                        <div>
+                            <h6 class="mb-1">${item.name}</h6>
+                            <p class="mb-0">${item.message}</p>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Update Screenshots
+            const container = document.querySelector('.screenshots-container');
+            container.innerHTML = '';
+            data.screenshots.forEach((base64Image, index) => {
+                container.innerHTML += `
+                    <img src="data:image/png;base64,${base64Image}" 
+                         alt="Screenshot ${index + 1}">
+                `;
+            });
+
+            loading.style.display = 'none';
+            results.style.display = 'block';
+        } else {
+            throw new Error(data.error || 'An error occurred');
+        }
+    } catch (error) {
+        alert('Error analyzing website: ' + error.message);
+        loading.style.display = 'none';
+    }
+});
+</script>
+{% endblock %} 

@@ -1,0 +1,332 @@
+[
+    {
+        "id": "vscode",
+        "name": "Visual Studio Code",
+        "description": "Code editor redefined and optimized for building and debugging modern web and cloud applications.",
+        "category": "Development",
+        "icon": "fa-solid fa-code",
+        "official_link": "https://code.visualstudio.com/download",
+        "versions": [
+            {
+                "name": "Windows x64",
+                "url": "https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-user"
+            },
+            {
+                "name": "Windows x32",
+                "url": "https://code.visualstudio.com/sha/download?build=stable&os=win32-user"
+            },
+            {
+                "name": "macOS",
+                "url": "https://code.visualstudio.com/sha/download?build=stable&os=darwin-universal"
+            },
+            {
+                "name": "Linux x64",
+                "url": "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
+            }
+        ]
+    },
+    {
+        "id": "postman",
+        "name": "Postman",
+        "description": "Platform for API development and testing.",
+        "category": "Development",
+        "icon": "fa-solid fa-paper-plane",
+        "official_link": "https://www.postman.com/downloads/",
+        "versions": [
+            {
+                "name": "Windows x64",
+                "url": "https://dl.pstmn.io/download/latest/win64"
+            },
+            {
+                "name": "macOS",
+                "url": "https://dl.pstmn.io/download/latest/osx"
+            },
+            {
+                "name": "Linux x64",
+                "url": "https://dl.pstmn.io/download/latest/linux64"
+            }
+        ]
+    },
+    {
+        "id": "git",
+        "name": "Git",
+        "description": "Distributed version control system.",
+        "category": "Development",
+        "icon": "fa-brands fa-git-alt",
+        "official_link": "https://git-scm.com/downloads",
+        "versions": [
+            {
+                "name": "Windows",
+                "url": "https://github.com/git-for-windows/git/releases/download/v2.41.0.windows.1/Git-2.41.0-64-bit.exe"
+            },
+            {
+                "name": "macOS",
+                "url": "https://sourceforge.net/projects/git-osx-installer/files/git-2.23.0-intel-universal-mavericks.dmg"
+            }
+        ]
+    },
+    {
+        "id": "intellij",
+        "name": "IntelliJ IDEA",
+        "description": "Powerful IDE for Java development.",
+        "category": "Development",
+        "icon": "fab fa-java",
+        "official_link": "https://www.jetbrains.com/idea/download/",
+        "versions": [
+            {
+                "name": "Windows (Community)",
+                "url": "https://download.jetbrains.com/idea/ideaIC-2023.1.3.exe"
+            },
+            {
+                "name": "macOS (Community)",
+                "url": "https://download.jetbrains.com/idea/ideaIC-2023.1.3.dmg"
+            },
+            {
+                "name": "Linux (Community)",
+                "url": "https://download.jetbrains.com/idea/ideaIC-2023.1.3.tar.gz"
+            }
+        ]
+    },
+    {
+        "id": "mysql-server",
+        "name": "MySQL Server",
+        "description": "World's most popular open source database.",
+        "category": "Database",
+        "icon": "fa-solid fa-database",
+        "official_link": "https://dev.mysql.com/downloads/mysql/",
+        "versions": [
+            {
+                "name": "Windows x64 (MSI Installer)",
+                "url": "https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.33-winx64.msi"
+            },
+            {
+                "name": "macOS x64 (DMG Archive)",
+                "url": "https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.33-macos13-x86_64.dmg"
+            }
+        ]
+    },
+    {
+        "id": "mysql-workbench",
+        "name": "MySQL Workbench",
+        "description": "Visual database design and administration tool for MySQL.",
+        "category": "Database",
+        "icon": "fas fa-database",
+        "official_link": "https://dev.mysql.com/downloads/workbench/",
+        "versions": [
+            {
+                "name": "Windows x64",
+                "url": "https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-8.0.33-winx64.msi"
+            },
+            {
+                "name": "macOS",
+                "url": "https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-8.0.33-macos-x86_64.dmg"
+            }
+        ]
+    },
+    {
+        "id": "cursor",
+        "name": "Cursor",
+        "description": "AI-first code editor that helps you code smarter and faster.",
+        "category": "Development",
+        "icon": "fas fa-terminal",
+        "official_link": "https://cursor.sh/",
+        "versions": [
+            {
+                "name": "Windows",
+                "url": "https://download.cursor.sh/windows"
+            },
+            {
+                "name": "macOS",
+                "url": "https://download.cursor.sh/mac"
+            }
+        ]
+    },
+    {
+        "id": "zalo",
+        "name": "Zalo",
+        "description": "Popular messaging app in Vietnam.",
+        "category": "Communication",
+        "icon": "fas fa-comments",
+        "official_link": "https://zalo.me/pc",
+        "versions": [
+            {
+                "name": "Windows",
+                "url": "https://res-download-pc.zadn.vn/hybrid/ZaloSetup.exe"
+            },
+            {
+                "name": "macOS",
+                "url": "https://res-download-pc.zadn.vn/hybrid/ZaloSetup.dmg"
+            }
+        ]
+    },
+    {
+        "id": "chrome",
+        "name": "Google Chrome",
+        "description": "Fast and secure web browser from Google.",
+        "category": "Browsers",
+        "icon": "fa-brands fa-chrome",
+        "official_link": "https://www.google.com/chrome/",
+        "versions": [
+            {
+                "name": "Windows x64",
+                "url": "https://dl.google.com/chrome/install/ChromeStandaloneSetup64.exe"
+            },
+            {
+                "name": "macOS",
+                "url": "https://dl.google.com/chrome/mac/universal/stable/GGRO/googlechrome.dmg"
+            }
+        ]
+    },
+    {
+        "id": "edge",
+        "name": "Microsoft Edge",
+        "description": "Modern and fast browser built on Chromium.",
+        "category": "Browsers",
+        "icon": "fa-brands fa-edge",
+        "official_link": "https://www.microsoft.com/edge",
+        "versions": [
+            {
+                "name": "Windows x64",
+                "url": "https://c2rsetup.officeapps.live.com/c2r/downloadEdge.aspx?platform=Default&source=EdgeStablePage&Channel=Stable&language=en"
+            },
+            {
+                "name": "macOS",
+                "url": "https://go.microsoft.com/fwlink/?linkid=2093504"
+            }
+        ]
+    },
+    {
+        "id": "firefox",
+        "name": "Mozilla Firefox",
+        "description": "Free and open-source web browser from Mozilla.",
+        "category": "Browsers",
+        "icon": "fa-brands fa-firefox",
+        "official_link": "https://www.mozilla.org/firefox/",
+        "versions": [
+            {
+                "name": "Windows x64",
+                "url": "https://download.mozilla.org/?product=firefox-latest&os=win64&lang=en-US"
+            },
+            {
+                "name": "macOS",
+                "url": "https://download.mozilla.org/?product=firefox-latest&os=osx&lang=en-US"
+            }
+        ]
+    },
+    {
+        "id": "teamviewer",
+        "name": "TeamViewer",
+        "description": "Remote desktop access and support software.",
+        "category": "Utilities",
+        "icon": "fas fa-desktop",
+        "official_link": "https://www.teamviewer.com/download/",
+        "versions": [
+            {
+                "name": "Windows",
+                "url": "https://download.teamviewer.com/download/TeamViewer_Setup.exe"
+            },
+            {
+                "name": "macOS",
+                "url": "https://download.teamviewer.com/download/TeamViewer.dmg"
+            }
+        ]
+    },
+    {
+        "id": "ultra-viewer",
+        "name": "Ultra Viewer",
+        "description": "Free remote desktop software for Windows.",
+        "category": "Utilities",
+        "icon": "fas fa-desktop",
+        "official_link": "https://www.ultraviewer.net/en/download.html",
+        "versions": [
+            {
+                "name": "Windows (Full)",
+                "url": "https://www.ultraviewer.net/en/UltraViewer_setup_6.6_en.exe"
+            },
+            {
+                "name": "Windows (Portable)",
+                "url": "https://www.ultraviewer.net/en/UltraViewer_setup_6.6_en.exe"
+            }
+        ]
+    },
+    {
+        "id": "winrar",
+        "name": "WinRAR",
+        "description": "Popular file archiver utility for Windows.",
+        "category": "Utilities",
+        "icon": "fa-solid fa-file-zipper",
+        "official_link": "https://www.win-rar.com/download.html",
+        "versions": [
+            {
+                "name": "Windows x64",
+                "url": "https://www.win-rar.com/fileadmin/winrar-versions/winrar/winrar-x64-621.exe"
+            },
+            {
+                "name": "Windows x32",
+                "url": "https://www.win-rar.com/fileadmin/winrar-versions/winrar/wrar621.exe"
+            }
+        ]
+    },
+    {
+        "id": "python",
+        "name": "Python",
+        "description": "Python programming language",
+        "category": "Environment",
+        "icon": "fa-brands fa-python",
+        "official_link": "https://www.python.org/downloads/",
+        "versions": [
+            {
+                "name": "Python 3.7 (Windows x64)",
+                "url": "https://www.python.org/ftp/python/3.7.9/python-3.7.9-amd64.exe"
+            },
+            {
+                "name": "Python 3.8 (Windows x64)",
+                "url": "https://www.python.org/ftp/python/3.8.10/python-3.8.10-amd64.exe"
+            },
+            {
+                "name": "Python 3.9 (Windows x64)",
+                "url": "https://www.python.org/ftp/python/3.9.13/python-3.9.13-amd64.exe"
+            },
+            {
+                "name": "Python 3.10 (Windows x64)",
+                "url": "https://www.python.org/ftp/python/3.10.11/python-3.10.11-amd64.exe"
+            }
+        ]
+    },
+    {
+        "id": "nodejs",
+        "name": "Node.js",
+        "description": "JavaScript runtime built on Chrome's V8 JavaScript engine.",
+        "category": "Environment",
+        "icon": "fa-brands fa-node-js",
+        "official_link": "https://nodejs.org/en/download/",
+        "versions": [
+            {
+                "name": "Windows x64",
+                "url": "https://nodejs.org/dist/v18.16.0/node-v18.16.0-x64.msi"
+            },
+            {
+                "name": "macOS",
+                "url": "https://nodejs.org/dist/v18.16.0/node-v18.16.0.pkg"
+            }
+        ]
+    },
+    {
+        "id": "java",
+        "name": "Java Development Kit",
+        "description": "Java Development Kit (JDK)",
+        "category": "Environment",
+        "icon": "fa-brands fa-java",
+        "official_link": "https://www.oracle.com/java/technologies/downloads/",
+        "versions": [
+            {
+                "name": "JDK 17 LTS (Windows x64)",
+                "url": "https://download.oracle.com/java/17/latest/jdk-17_windows-x64_bin.exe"
+            },
+            {
+                "name": "JDK 21 LTS (Windows x64)",
+                "url": "https://download.oracle.com/java/21/latest/jdk-21_windows-x64_bin.exe"
+            }
+        ]
+    }
+]

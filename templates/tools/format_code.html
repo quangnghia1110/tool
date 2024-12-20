@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    <h2 class="mb-4">Code Formatter</h2>
+    <div class="card">
+        <div class="card-body">
+            <form id="formatterForm">
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <label for="language" class="form-label">Select Language:</label>
+                        <select class="form-select" id="language" name="language" required>
+                            <option value="json">JSON</option>
+                            <option value="html">HTML</option>
+                            <option value="javascript">JavaScript</option>
+                            <option value="css">CSS</option>
+                            <option value="python">Python</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="inputCode" class="form-label">Input Code:</label>
+                        <textarea class="form-control" id="inputCode" name="code" rows="15" required></textarea>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="outputCode" class="form-label">Formatted Code:</label>
+                        <textarea class="form-control" id="outputCode" rows="15" readonly></textarea>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Format Code</button>
+                        <button type="button" id="copyBtn" class="btn btn-secondary ms-2">Copy Formatted Code</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+document.getElementById('formatterForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(this);
+    const outputCode = document.getElementById('outputCode');
+    
+    try {
+        const response = await fetch('/tools/format-code', {
+            method: 'POST',
+            body: formData
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok) {
+            outputCode.value = data.result;
+        } else {
+            alert(data.error || 'An error occurred');
+        }
+    } catch (error) {
+        alert('An error occurred while formatting the code');
+    }
+});
+
+document.getElementById('copyBtn').addEventListener('click', function() {
+    const outputCode = document.getElementById('outputCode');
+    outputCode.select();
+    document.execCommand('copy');
+    alert('Formatted code copied to clipboard!');
+});
+</script>
+{% endblock %} 

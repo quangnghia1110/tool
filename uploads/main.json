@@ -1,0 +1,8129 @@
+{
+	"info": {
+		"_postman_id": "b9246ad6-a403-49f7-b5a2-13aba1489b0b",
+		"name": "studentConsulting",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31260663",
+		"_collection_link": "https://tlcn44-8957.postman.co/workspace/TLCN-Workspace~7454ba72-2ff5-4990-82b6-e06c7b4aa8d2/collection/31260663-b9246ad6-a403-49f7-b5a2-13aba1489b0b?action=share&source=collection_link&creator=31260663"
+	},
+	"item": [
+		{
+			"name": "ACTOR",
+			"item": [
+				{
+					"name": "Answer Controller",
+					"item": [
+						{
+							"name": "Trả lời câu hỏi",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "questionId",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "test2",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/NgoQuangNghia/Downloads/download.jfif"
+										},
+										{
+											"key": "statusApproval",
+											"value": "false",
+											"type": "text"
+										},
+										{
+											"key": "title",
+											"value": "test2",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/consultant/answer/create",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"consultant",
+										"answer",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Kiểm duyệt câu trả lời",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "questionId",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "test3",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/NgoQuangNghia/Downloads/unnamed.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/advisor-admin/answer/review",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"advisor-admin",
+										"answer",
+										"review"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cập nhật câu trả lời",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "answerId",
+											"value": "32",
+											"type": "text"
+										},
+										{
+											"key": "title",
+											"value": "s",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "statusApproval",
+											"value": "true",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/NgoQuangNghia/Downloads/download.jfif"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/answer/update",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"answer",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Xóa câu trả lời",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/answer/delete?id=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"answer",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy chi tiết câu trả lời",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/answer/detail?id=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"answer",
+										"detail"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Chat Controller",
+					"item": [
+						{
+							"name": "Thu hôi tin nhắn phía bạn",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/recall-message-self?messageId=15",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"recall-message-self"
+									],
+									"query": [
+										{
+											"key": "messageId",
+											"value": "15"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Thu hồi tin nhắn tất cả",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/recall-message-all?messageId=2",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"recall-message-all"
+									],
+									"query": [
+										{
+											"key": "messageId",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cập nhật tin nhắn",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/update-message?messageId=3&newContent=cc",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"update-message"
+									],
+									"query": [
+										{
+											"key": "messageId",
+											"value": "3"
+										},
+										{
+											"key": "newContent",
+											"value": "cc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy lịch sử tin nhắn của conversation",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/chat/history?conversationId=2&page=0&size=50&sortBy=date&sortDir=desc",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"chat",
+										"history"
+									],
+									"query": [
+										{
+											"key": "conversationId",
+											"value": "2"
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "50"
+										},
+										{
+											"key": "sortBy",
+											"value": "date"
+										},
+										{
+											"key": "sortDir",
+											"value": "desc"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Conversation Controller",
+					"item": [
+						{
+							"name": "Tạo phòng chat riêng tư",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"departmentId\":4,\r\n    \"consultantId\": 28\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/user/conversation/create",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"conversation",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Tạo phòng chat nhóm",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Test\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/consultant/conversation/create",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"consultant",
+										"conversation",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy danh sách phòng chat",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/conversation/list?page=0&size=10&sortBy=createdAt&sortDir=desc",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"conversation",
+										"list"
+									],
+									"query": [
+										{
+											"key": "startDate",
+											"value": "2024-09-06",
+											"disabled": true
+										},
+										{
+											"key": "endDate",
+											"value": "2024-09-06",
+											"disabled": true
+										},
+										{
+											"key": "name",
+											"value": "ss",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "sortBy",
+											"value": "createdAt"
+										},
+										{
+											"key": "sortDir",
+											"value": "desc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cập nhật tên phòng chat",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/conversation/update?conversationId=4&newName=ssssss",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"conversation",
+										"update"
+									],
+									"query": [
+										{
+											"key": "conversationId",
+											"value": "4"
+										},
+										{
+											"key": "newName",
+											"value": "ssssss"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Xóa phòng chat",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/conversation/delete?conversationId=7",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"conversation",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "conversationId",
+											"value": "7"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy chi tiết phòng chat",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/conversation/detail?conversationId=4",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"conversation",
+										"detail"
+									],
+									"query": [
+										{
+											"key": "conversationId",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Duyệt thành viên",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"emailToApprove\": [\"tuvanvien07@hcmute.edu.vn\"]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/conversation/approve-member?conversationId=7",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"conversation",
+										"approve-member"
+									],
+									"query": [
+										{
+											"key": "conversationId",
+											"value": "7"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Xóa thành viên",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/consultant/conversation/remove-member?conversationId=4&userIdToRemove=61",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"consultant",
+										"conversation",
+										"remove-member"
+									],
+									"query": [
+										{
+											"key": "conversationId",
+											"value": "4"
+										},
+										{
+											"key": "userIdToRemove",
+											"value": "61"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy danh sách thành viên trong chat",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/conversation/list-member?conversationId=4",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"conversation",
+										"list-member"
+									],
+									"query": [
+										{
+											"key": "conversationId",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy danh sách user để duyệt",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/conversation/list-users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"conversation",
+										"list-users"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Comment Controller",
+					"item": [
+						{
+							"name": "Tạo bình luận",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/comment/create?postId=1&text=TEST PARENT1sdc",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"comment",
+										"create"
+									],
+									"query": [
+										{
+											"key": "postId",
+											"value": "1"
+										},
+										{
+											"key": "text",
+											"value": "TEST PARENT1sdc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Phản hồi bình luận",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/comment/reply?commentFatherId=6&text=CHILD2Gq",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"comment",
+										"reply"
+									],
+									"query": [
+										{
+											"key": "commentFatherId",
+											"value": "6"
+										},
+										{
+											"key": "text",
+											"value": "CHILD2Gq"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cập nhật bình luận",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/comment/update?commentId=7&text=Nội dung bình luận đã được cập nhật",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"comment",
+										"update"
+									],
+									"query": [
+										{
+											"key": "commentId",
+											"value": "7"
+										},
+										{
+											"key": "text",
+											"value": "Nội dung bình luận đã được cập nhật"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Xóa bình luận",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/comment/delete?commentId=5",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"comment",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "commentId",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Common Question Controller",
+					"item": [
+						{
+							"name": "Lấy danh sách câu hỏi chung",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/advisor-admin/list-common-question?page=0&size=10&sortBy=title&sortDir=asc",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"advisor-admin",
+										"list-common-question"
+									],
+									"query": [
+										{
+											"key": "title",
+											"value": "example",
+											"disabled": true
+										},
+										{
+											"key": "startDate",
+											"value": "2023-01-01",
+											"disabled": true
+										},
+										{
+											"key": "endDate",
+											"value": "2023-12-31",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "sortBy",
+											"value": "title"
+										},
+										{
+											"key": "sortDir",
+											"value": "asc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Chuyển câu hỏi thành câu hỏi chung",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/advisor-admin/common-question/convert-to-common?questionId=6",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"advisor-admin",
+										"common-question",
+										"convert-to-common"
+									],
+									"query": [
+										{
+											"key": "questionId",
+											"value": "6"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cập nhật câu hỏi chung",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "commonQuestionId",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "answerContent",
+											"value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/advisor-admin/common-question/update",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"advisor-admin",
+										"common-question",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Xóa câu hỏi chung",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/advisor-admin/common-question/delete?id=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"advisor-admin",
+										"common-question",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy chi tiết câu hỏi chung",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/advisor-admin/common-question/detail?id=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"advisor-admin",
+										"common-question",
+										"detail"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Tạo câu hỏi chung",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "aaaa",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "aaaaaa",
+											"type": "text"
+										},
+										{
+											"key": "answerTitle",
+											"value": "bbb",
+											"type": "text"
+										},
+										{
+											"key": "answerContent",
+											"value": "bbbbbb",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/NgoQuangNghia/Downloads/markuphero-EnxSHr2DojmYM5lejICH.png"
+										},
+										{
+											"key": "fileAnswer",
+											"type": "file",
+											"src": "/C:/Users/NgoQuangNghia/Downloads/markuphero-B0gMw6DByVvkRrcohp8L.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/advisor-admin/common-question/create",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"advisor-admin",
+										"common-question",
+										"create"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Consultation Schedule Controller",
+					"item": [
+						{
+							"name": "Đặt lịch tư vấn",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyMTExMDU1OUBzdHVkZW50LmhjbXV0ZS5lZHUudm4iLCJpYXQiOjE3MzQ0MjQ3NTEsImV4cCI6MTczNzAxNjc1MSwiYXV0aG9yaXRpZXMiOiJVU0VSIn0.m9b7Mid4ebsM_ClueFbV0gVMaCZEyPdEE0NCoOOY5GBAa6Sk_IODQTgzXN-6ugl5SHBOnUhM2YrtRxZlH2lFjg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"departmentId\": 2,\r\n    \"consultantId\": 24,\r\n    \"title\": \"Consultation on career orientation1\",\r\n    \"content\": \"Discussion about career path and opportunities1\",\r\n    \"mode\":false,\r\n    \"statusPublic\": true\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/user/consultation-schedule/create",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"consultation-schedule",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Xác nhận lịch tư vấn",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"consultationDate\": \"2024-12-15\",\r\n  \"consultationTime\": \"14:00\",\r\n  \"location\": \"Phòng 101, Tòa nhà A\",\r\n  \"mode\": false,\r\n  \"statusPublic\": true,\r\n  \"statusConfirmed\": true\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/consultant/consultation-schedule/confirm?scheduleId=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"consultant",
+										"consultation-schedule",
+										"confirm"
+									],
+									"query": [
+										{
+											"key": "scheduleId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Tạo buổi tư vấn",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Buổi tư vấn hướng nghiệp\",\r\n    \"content\": \"Buổi tư vấn dành cho sinh viên năm 4\",\r\n    \"consultationDate\": \"2024-12-18\",\r\n    \"consultationTime\": \"14:00\",\r\n    \"location\": \"ssss\",\r\n    \"mode\": false\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/advisor-admin/consultation-schedule/create",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"advisor-admin",
+										"consultation-schedule",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy danh sách lịch, buổi tư vấn",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/consultation-schedule/list?departmentId=1&type=true",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"consultation-schedule",
+										"list"
+									],
+									"query": [
+										{
+											"key": "departmentId",
+											"value": "1"
+										},
+										{
+											"key": "title",
+											"value": "Test lịch tư vấn",
+											"disabled": true
+										},
+										{
+											"key": "startDate",
+											"value": "2024-09-06",
+											"disabled": true
+										},
+										{
+											"key": "endDate",
+											"value": "2024-09-06",
+											"disabled": true
+										},
+										{
+											"key": "type",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cập nhật lịch, buổi tư vấn",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Buổi tư vấn hướng nghiệp\",\r\n    \"content\": \"Buổi tư vấn dành cho sinh viên năm 4\",\r\n    \"consultationDate\": \"2024-12-30\",\r\n    \"consultationTime\": \"14:00\",\r\n    \"link\": \"https://meet.google.com/opq-tbet-jfx\",\r\n    \"mode\": true\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/consultation-schedule/update?scheduleId=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"consultation-schedule",
+										"update"
+									],
+									"query": [
+										{
+											"key": "scheduleId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Xóa lịch, buổi tư vấn",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/consultation-schedule/delete?scheduleId=6",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"consultation-schedule",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "scheduleId",
+											"value": "6"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy chi tiết lịch, buổi tư vấn",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/consultation-schedule/detail?scheduleId=6",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"consultation-schedule",
+										"detail"
+									],
+									"query": [
+										{
+											"key": "scheduleId",
+											"value": "6"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy danh sách các buổi tư vấn đã tham gia",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/user/consultation-schedule/list-join",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"consultation-schedule",
+										"list-join"
+									],
+									"query": [
+										{
+											"key": "startDate",
+											"value": "2024-09-01",
+											"disabled": true
+										},
+										{
+											"key": "endDate",
+											"value": "2024-09-30",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "0",
+											"disabled": true
+										},
+										{
+											"key": "size",
+											"value": "10",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "registeredAt",
+											"disabled": true
+										},
+										{
+											"key": "sortDir",
+											"value": "asc",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Đăng ký lịch tư vấn công khai",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/user/consultation-schedule/join?scheduleId=2",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"consultation-schedule",
+										"join"
+									],
+									"query": [
+										{
+											"key": "scheduleId",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Hủy đăng ký lịch tư vấn công khai do trưởng ban tư vấn tạo",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/user/consultation-schedule/cancel?scheduleId=2",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"consultation-schedule",
+										"cancel"
+									],
+									"query": [
+										{
+											"key": "scheduleId",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy danh sách các thành viên tham gia buổi tư vấn",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/advisor-admin/consultation-schedule/list-member-join?consultationScheduleId=2",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"advisor-admin",
+										"consultation-schedule",
+										"list-member-join"
+									],
+									"query": [
+										{
+											"key": "startDate",
+											"value": "2024-09-01",
+											"disabled": true
+										},
+										{
+											"key": "endDate",
+											"value": "2024-09-30",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "0",
+											"disabled": true
+										},
+										{
+											"key": "size",
+											"value": "10",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "registeredAt",
+											"disabled": true
+										},
+										{
+											"key": "sortDir",
+											"value": "asc",
+											"disabled": true
+										},
+										{
+											"key": "consultationScheduleId",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Check đăng ký",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/user/consultation-schedule/check?consultationScheduleId=13",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"consultation-schedule",
+										"check"
+									],
+									"query": [
+										{
+											"key": "consultationScheduleId",
+											"value": "13"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Forward Question Controller",
+					"item": [
+						{
+							"name": "Chuyển tiếp câu hỏi",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"toDepartmentId\":2,\r\n  \"questionId\": 4,\r\n  \"consultantId\": 23\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/consultant/forward-question/forward",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"consultant",
+										"forward-question",
+										"forward"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy danh sách câu hỏi chuyển tiếp",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/forward-question/list?page=0&size=10&sortBy=createdAt&sortDir=desc",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"forward-question",
+										"list"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "sortBy",
+											"value": "createdAt"
+										},
+										{
+											"key": "sortDir",
+											"value": "desc"
+										},
+										{
+											"key": "toDepartmentId",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "startDate",
+											"value": "2024-09-01",
+											"disabled": true
+										},
+										{
+											"key": "endDate",
+											"value": "2024-09-30",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cập nhật câu hỏi chuyển tiếp",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"toDepartmentId\":2,\r\n  \"questionId\": 1,\r\n  \"consultantId\": 24\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/forward-question/update?forwardQuestionId=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"forward-question",
+										"update"
+									],
+									"query": [
+										{
+											"key": "forwardQuestionId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Xóa câu hỏi chuyển tiếp",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/forward-question/delete?forwardQuestionId=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"forward-question",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "forwardQuestionId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy chi tiết câu hỏi chuyển tiếp",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/forward-question/detail?forwardQuestionId=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"forward-question",
+										"detail"
+									],
+									"query": [
+										{
+											"key": "forwardQuestionId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Like Controller",
+					"item": [
+						{
+							"name": "Thích câu hỏi",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/like/question?questionId=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"like",
+										"question"
+									],
+									"query": [
+										{
+											"key": "questionId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Bỏ thích câu hỏi",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/unlike/question?questionId=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"unlike",
+										"question"
+									],
+									"query": [
+										{
+											"key": "questionId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Thích bài viết",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/like/post?postId=4",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"like",
+										"post"
+									],
+									"query": [
+										{
+											"key": "postId",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Bỏ thích bài viết",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/unlike/post?postId=4",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"unlike",
+										"post"
+									],
+									"query": [
+										{
+											"key": "postId",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Thích bình luận",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/like/comment?commentId=6",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"like",
+										"comment"
+									],
+									"query": [
+										{
+											"key": "commentId",
+											"value": "6"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Bỏ thích bình luận",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/unlike/comment?commentId=6",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"unlike",
+										"comment"
+									],
+									"query": [
+										{
+											"key": "commentId",
+											"value": "6"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Xem mình thích câu hỏi hay chưa",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/like/question/check?questionId=1 ",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"like",
+										"question",
+										"check"
+									],
+									"query": [
+										{
+											"key": "questionId",
+											"value": "1 "
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Xem mình thích bình luận hay chưa",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/like/comment/check?commentId=1 ",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"like",
+										"comment",
+										"check"
+									],
+									"query": [
+										{
+											"key": "commentId",
+											"value": "1 "
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Xem mình thích bài đăng hay chưa",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/like/post/check?postId=1 ",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"like",
+										"post",
+										"check"
+									],
+									"query": [
+										{
+											"key": "postId",
+											"value": "1 "
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Post Controller",
+					"item": [
+						{
+							"name": "Tạo bài đăng",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "content",
+											"value": "test",
+											"type": "text"
+										},
+										{
+											"key": "isAnonymous",
+											"value": "false",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/NgoQuangNghia/Downloads/images.png"
+										},
+										{
+											"key": "title",
+											"value": "test",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/post",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"post"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy danh sách bài đăng",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/post/list?isApproved=true&page=0&size=10&sortBy=createdAt&sortDir=asc",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"post",
+										"list"
+									],
+									"query": [
+										{
+											"key": "userName",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "isApproved",
+											"value": "true"
+										},
+										{
+											"key": "startDate",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "endDate",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "sortBy",
+											"value": "createdAt"
+										},
+										{
+											"key": "sortDir",
+											"value": "asc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cập nhật bài đăng",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "content",
+											"value": "ssssssss",
+											"type": "text"
+										},
+										{
+											"key": "isAnonymous",
+											"value": "false",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/NgoQuangNghia/OneDrive - hcmute.edu.vn/Pictures/Screenshots/Screenshot (14).png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/post/update?id=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"post",
+										"update"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Xóa bài đăng",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/post/delete?id=3",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"post",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Chi tiết bài đăng",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/post/detail?id=2",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"post",
+										"detail"
+									],
+									"query": [
+										{
+											"key": "userName",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "startDate",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "endDate",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Question Controller",
+					"item": [
+						{
+							"name": "Tạo câu hỏi",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "departmentId",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "fieldId",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "roleAskId",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "test1ssss",
+											"type": "text"
+										},
+										{
+											"key": "firstName",
+											"value": "Nghĩa",
+											"type": "text"
+										},
+										{
+											"key": "lastName",
+											"value": "Ngô Quang",
+											"type": "text"
+										},
+										{
+											"key": "studentCode",
+											"value": "21110559",
+											"type": "text"
+										},
+										{
+											"key": "statusPublic",
+											"value": "true",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/NgoQuangNghia/Downloads/1.png"
+										},
+										{
+											"key": "title",
+											"value": "test1sssss",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/user/question/create",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"question",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy danh chi tiết câu hỏi",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/question/detail?questionId=3",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"question",
+										"detail"
+									],
+									"query": [
+										{
+											"key": "title",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "status",
+											"value": "PUBLIC",
+											"disabled": true
+										},
+										{
+											"key": "startDate",
+											"value": "2024-09-06",
+											"disabled": true
+										},
+										{
+											"key": "endDate",
+											"value": "2024-09-06",
+											"disabled": true
+										},
+										{
+											"key": "isConsultantSpecific",
+											"value": "false",
+											"disabled": true
+										},
+										{
+											"key": "questionId",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Tư vấn viên xóa câu hỏi",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/question/delete?questionId=1&reason=Duplicate question",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"question",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "questionId",
+											"value": "1"
+										},
+										{
+											"key": "reason",
+											"value": "Duplicate question"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Hỏi tiếp",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "parentQuestionId",
+											"value": "5",
+											"type": "text"
+										},
+										{
+											"key": "title",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/NgoQuangNghia/Pictures/Screenshots/Screenshot (4).png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/user/question/create-follow-up",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"question",
+										"create-follow-up"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy danh sách câu hỏi, trả lời",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://nam4hocky1tlcn-production.up.railway.app/api/v1/question-answer/list?sortBy=createdAt&sortDir=desc&page=0&size=5&departmentId=&status=APPROVED&endDate=2024-12-31&startDate=2024-12-02&statusApproval=false",
+									"protocol": "https",
+									"host": [
+										"nam4hocky1tlcn-production",
+										"up",
+										"railway",
+										"app"
+									],
+									"path": [
+										"api",
+										"v1",
+										"question-answer",
+										"list"
+									],
+									"query": [
+										{
+											"key": "sortBy",
+											"value": "createdAt"
+										},
+										{
+											"key": "sortDir",
+											"value": "desc"
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "5"
+										},
+										{
+											"key": "departmentId",
+											"value": ""
+										},
+										{
+											"key": "status",
+											"value": "APPROVED"
+										},
+										{
+											"key": "endDate",
+											"value": "2024-12-31"
+										},
+										{
+											"key": "title",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "isConsultantSpecific",
+											"value": "false",
+											"disabled": true
+										},
+										{
+											"key": "startDate",
+											"value": "2024-12-02"
+										},
+										{
+											"key": "statusApproval",
+											"value": "false"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cập nhật câu hỏi user",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "questionId",
+											"value": "28",
+											"type": "text"
+										},
+										{
+											"key": "departmentId",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "fieldId",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "roleAskId",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "title",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "firstName",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "lastName",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "studentCode",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "statusPublic",
+											"value": "TRUE",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/NgoQuangNghia/OneDrive - hcmute.edu.vn/Pictures/Screenshots/Screenshot (14).png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/user/question/update",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"question",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Xóa câu hỏi user",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/user/question/delete?id=3",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"question",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy danh sách lý do xóa câu hỏi",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/deletion-log/list",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"deletion-log",
+										"list"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy chi tiết lý do xóa câu hỏi",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/deletion-log/detail?questionId=21",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"deletion-log",
+										"detail"
+									],
+									"query": [
+										{
+											"key": "questionId",
+											"value": "21"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Rating Controller",
+					"item": [
+						{
+							"name": "Đánh giá ban tư vấn",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"departmentId\": 1,\r\n    \"consultantId\": 21,\r\n    \"generalSatisfaction\": 5,\r\n    \"expertiseKnowledge\": 4,\r\n    \"attitude\": 5,\r\n    \"responseSpeed\": 3,\r\n    \"understanding\": 4\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/user/rating/create",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"rating",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy danh sách đánh giá",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/rating/list?departmentId=3",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"rating",
+										"list"
+									],
+									"query": [
+										{
+											"key": "departmentId",
+											"value": "3"
+										},
+										{
+											"key": "consultantName",
+											"value": "Tư Vấn Viên 1",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "0",
+											"disabled": true
+										},
+										{
+											"key": "size",
+											"value": "25",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "submittedAt",
+											"disabled": true
+										},
+										{
+											"key": "sortDir",
+											"value": "asc",
+											"disabled": true
+										},
+										{
+											"key": "startDate",
+											"value": "2024-09-06",
+											"disabled": true
+										},
+										{
+											"key": "endDate",
+											"value": "2024-09-06",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy chi tiết đánh giá",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/rating/detail?id=2",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"rating",
+										"detail"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy rating của tư vấn viên đã đánh giá rồi",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/list-consultant-rating-by-department?consultantId=21",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"list-consultant-rating-by-department"
+									],
+									"query": [
+										{
+											"key": "consultantId",
+											"value": "21"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "ADMIN",
+			"item": [
+				{
+					"name": "Account Controller",
+					"item": [
+						{
+							"name": "Lấy danh sách tài khoản",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/account/list?page=0&size=10&sortBy=username&sortDir=asc&isOnline=true",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"account",
+										"list"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "user2024@student.hcmute.edu.vn",
+											"disabled": true
+										},
+										{
+											"key": "username",
+											"value": "USER 2024",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "sortBy",
+											"value": "username"
+										},
+										{
+											"key": "sortDir",
+											"value": "asc"
+										},
+										{
+											"key": "isOnline",
+											"value": "true"
+										},
+										{
+											"key": "startDate",
+											"value": "2024-10-07",
+											"disabled": true
+										},
+										{
+											"key": "endDate",
+											"value": "2024-10-07",
+											"disabled": true
+										},
+										{
+											"key": "isActivity",
+											"value": "true",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy thông tin chi tiết tài khoản",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/account/detail?id=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"account",
+										"detail"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cập nhật tài khoản",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"activity\": false,\r\n    \"roleId\": 3,\r\n    \"roleConsultantId\": 1,\r\n    \"username\": \"newUsername\",\r\n    \"email\": \"newemail@example.com\",\r\n    \"password\": \"newPassword123\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/admin/account/update?id=59",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"account",
+										"update"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "59"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Address Controller",
+					"item": [
+						{
+							"name": "Lấy danh sách address",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/address/list?provinceCode=79&districtCode=760&wardCode=26734&page=0&size=10&sortBy=line&sortDir=asc",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"address",
+										"list"
+									],
+									"query": [
+										{
+											"key": "line",
+											"value": "123 Main St",
+											"disabled": true
+										},
+										{
+											"key": "provinceCode",
+											"value": "79"
+										},
+										{
+											"key": "districtCode",
+											"value": "760"
+										},
+										{
+											"key": "wardCode",
+											"value": "26734"
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "sortBy",
+											"value": "line"
+										},
+										{
+											"key": "sortDir",
+											"value": "asc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Tạo address",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"line\": \"123 Đường ABC\",\r\n  \"provinceCode\": \"79\",    \r\n  \"districtCode\": \"760\",   \r\n  \"wardCode\": \"26734\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/admin/address/create",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"address",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sửa address",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"line\": \"123 Đường ABC\",\r\n  \"provinceCode\": \"79\",    \r\n  \"districtCode\": \"760\",   \r\n  \"wardCode\": \"26734\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/admin/address/update?id=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"address",
+										"update"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Xoá address",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/address/delete?id=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"address",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy chi tiết address",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/address/detail?id=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"address",
+										"detail"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Department Controller",
+					"item": [
+						{
+							"name": "Lấy danh sách department",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/department/list?name=IT&page=0&size=10&sortBy=id&sortDir=asc",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"department",
+										"list"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "IT"
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "sortBy",
+											"value": "id"
+										},
+										{
+											"key": "sortDir",
+											"value": "asc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Tạo department",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"IT Department\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/admin/department/create",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"department",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sửa department",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Updated IT Department\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/admin/department/update?id=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"department",
+										"update"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Xoá department",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/department/delete?id=21",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"department",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "21"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy chi tiết department",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/department/detail?id=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"department",
+										"detail"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "District Controller",
+					"item": [
+						{
+							"name": "Lấy danh sách district",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/district/list?provinceCode=01&page=0&size=10&sortBy=code&sortDir=asc",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"district",
+										"list"
+									],
+									"query": [
+										{
+											"key": "code",
+											"value": "001",
+											"disabled": true
+										},
+										{
+											"key": "name",
+											"value": "Ba Đình",
+											"disabled": true
+										},
+										{
+											"key": "nameEn",
+											"value": "Ba Dinh",
+											"disabled": true
+										},
+										{
+											"key": "fullName",
+											"value": "Quận Ba Đình",
+											"disabled": true
+										},
+										{
+											"key": "fullNameEn",
+											"value": "Ba Dinh District",
+											"disabled": true
+										},
+										{
+											"key": "codeName",
+											"value": "ba_dinh",
+											"disabled": true
+										},
+										{
+											"key": "provinceCode",
+											"value": "01"
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "sortBy",
+											"value": "code"
+										},
+										{
+											"key": "sortDir",
+											"value": "asc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Tạo district",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Long Biên\",\r\n    \"nameEn\": \"Long Bien\",\r\n    \"fullName\": \"Quận Long Biên\",\r\n    \"fullNameEn\": \"Long Bien District\",\r\n    \"codeName\": \"long_bien\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/admin/district/create?provinceCode=01&code=1000",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"district",
+										"create"
+									],
+									"query": [
+										{
+											"key": "provinceCode",
+											"value": "01"
+										},
+										{
+											"key": "code",
+											"value": "1000"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sửa district",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Long Biên\",\r\n    \"nameEn\": \"Long Bien\",\r\n    \"fullName\": \"Quận Long Biên\",\r\n    \"fullNameEn\": \"Long Bien District\",\r\n    \"codeName\": \"long_bien\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/admin/district/update?provinceCode=01&code=1000",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"district",
+										"update"
+									],
+									"query": [
+										{
+											"key": "provinceCode",
+											"value": "01"
+										},
+										{
+											"key": "code",
+											"value": "1000"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Xoá district",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/district/delete?provinceCode=001",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"district",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "provinceCode",
+											"value": "001"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy chi tiết district",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/district/detail?code=001",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"district",
+										"detail"
+									],
+									"query": [
+										{
+											"key": "code",
+											"value": "001"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Field Controller",
+					"item": [
+						{
+							"name": "Lấy danh sách field",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/field/list?page=0&size=10&sortBy=id&sortDir=asc&departmentId=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"field",
+										"list"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Technology",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "sortBy",
+											"value": "id"
+										},
+										{
+											"key": "sortDir",
+											"value": "asc"
+										},
+										{
+											"key": "departmentId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Tạo field",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Technology Field\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/admin/field/create?departmentId=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"field",
+										"create"
+									],
+									"query": [
+										{
+											"key": "departmentId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sửa field",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Updated Technology Field\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/admin/field/update?id=1&departmentId=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"field",
+										"update"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										},
+										{
+											"key": "departmentId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Xoá field",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/field/delete?id=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"field",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy chi tiết field",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/field/detail?id=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"field",
+										"detail"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Post Controller",
+					"item": [
+						{
+							"name": "Phê duyệt bài đăng",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/post/approve?id=11",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"post",
+										"approve"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "11"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Province Controller",
+					"item": [
+						{
+							"name": "Lấy danh sách province",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/province/list?page=0&size=10&sortBy=code&sortDir=asc",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"province",
+										"list"
+									],
+									"query": [
+										{
+											"key": "code",
+											"value": "01",
+											"disabled": true
+										},
+										{
+											"key": "name",
+											"value": "Hà Nội",
+											"disabled": true
+										},
+										{
+											"key": "nameEn",
+											"value": "Ha Noi",
+											"disabled": true
+										},
+										{
+											"key": "fullName",
+											"value": "Thành phố Hà Nội",
+											"disabled": true
+										},
+										{
+											"key": "fullNameEn",
+											"value": "Ha Noi City",
+											"disabled": true
+										},
+										{
+											"key": "codeName",
+											"value": "ha_noi",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "sortBy",
+											"value": "code"
+										},
+										{
+											"key": "sortDir",
+											"value": "asc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Tạo province",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"code\": \"14\",\r\n    \"name\": \"Sơn La\",\r\n    \"nameEn\": \"Son La\",\r\n    \"fullName\": \"Tỉnh Sơn La\",\r\n    \"fullNameEn\": \"Son La Province\",\r\n    \"codeName\": \"son_la\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/admin/province/create",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"province",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sửa province",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"code\": \"14\",\r\n    \"name\": \"Sơn La\",\r\n    \"nameEn\": \"Son La\",\r\n    \"fullName\": \"Tỉnh Sơn La\",\r\n    \"fullNameEn\": \"Son La Province\",\r\n    \"codeName\": \"son_la\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/admin/province/update?code=01",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"province",
+										"update"
+									],
+									"query": [
+										{
+											"key": "code",
+											"value": "01"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Xoá province",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/province/delete?code=01",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"province",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "code",
+											"value": "01"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy chi tiết province",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/province/detail?code=01",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"province",
+										"detail"
+									],
+									"query": [
+										{
+											"key": "code",
+											"value": "01"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Role Ask Controller",
+					"item": [
+						{
+							"name": "Lấy danh sách role ask",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/role-ask/list?roleId=4&page=0&size=10&sortBy=id&sortDir=asc",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"role-ask",
+										"list"
+									],
+									"query": [
+										{
+											"key": "roleId",
+											"value": "4"
+										},
+										{
+											"key": "name",
+											"value": "ROLE_USER",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "sortBy",
+											"value": "id"
+										},
+										{
+											"key": "sortDir",
+											"value": "asc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Tạo role ask",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Admin Role Ask\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/admin/role-ask/create",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"role-ask",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sửa role ask",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Updated Role Ask\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/admin/role-ask/update?id=1&roleId=4",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"role-ask",
+										"update"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										},
+										{
+											"key": "roleId",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Xoá role ask",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/role-ask/delete?id=6",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"role-ask",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "6"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy chi tiết role ask",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/role-ask/detail?id=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"role-ask",
+										"detail"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Role Consultant Controller",
+					"item": [
+						{
+							"name": "Lấy danh sách role consultant",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/role-consultant/list?page=0&size=10&sortBy=id&sortDir=asc",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"role-consultant",
+										"list"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Consultant",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "sortBy",
+											"value": "id"
+										},
+										{
+											"key": "sortDir",
+											"value": "asc"
+										},
+										{
+											"key": "roleId",
+											"value": "2",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Tạo role consultant",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Consultant Role\",\r\n    \"roleId\": \"1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/admin/role-consultant/create",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"role-consultant",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sửa role consultant",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"SINHVIEN\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/admin/role-consultant/update?id=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"role-consultant",
+										"update"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Xoá role consultant",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/role-consultant/delete?id=2",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"role-consultant",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy chi tiết role consultant",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/role-consultant/detail?id=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"role-consultant",
+										"detail"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Role Controller",
+					"item": [
+						{
+							"name": "Lấy danh sách role",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/role/list?page=0&size=10&sortBy=id&sortDir=asc",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"role",
+										"list"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Admin",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "sortBy",
+											"value": "id"
+										},
+										{
+											"key": "sortDir",
+											"value": "asc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Tạo role",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/admin/role/create",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"role",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sửa role",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"User\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/admin/role/update?id=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"role",
+										"update"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Xoá role",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/role/delete?id=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"role",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy chi tiết role",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/role/detail?id=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"role",
+										"detail"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User Information Controller",
+					"item": [
+						{
+							"name": "Lấy danh sách người dùng",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/user-information/list?page=0&size=10&sortBy=firstName&sortDir=asc",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"user-information",
+										"list"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Ngô Quang Nghĩa",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "sortBy",
+											"value": "firstName"
+										},
+										{
+											"key": "sortDir",
+											"value": "asc"
+										},
+										{
+											"key": "startDate",
+											"value": "2024-10-07",
+											"disabled": true
+										},
+										{
+											"key": "endDate",
+											"value": "2024-10-07",
+											"disabled": true
+										},
+										{
+											"key": "accountId",
+											"value": "62",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy thông tin chi tiết người dùng",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/user-information/detail?id=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"user-information",
+										"detail"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cập nhật thông tin",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "avatarUrl",
+											"type": "file",
+											"src": "/C:/Users/NgoQuangNghia/Downloads/code.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/admin/user-information/update?id=61",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"user-information",
+										"update"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "61"
+										},
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Ward Controller",
+					"item": [
+						{
+							"name": "Lấy danh sách ward",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/ward/list?districtCode=001&code=00001&name=Phúc Xá&nameEn=Phuc Xa&fullName=Phường Phúc Xá&fullNameEn=Phuc Xa Ward&codeName=phuc_xa&page=0&size=10&sortBy=code&sortDir=asc",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"ward",
+										"list"
+									],
+									"query": [
+										{
+											"key": "districtCode",
+											"value": "001"
+										},
+										{
+											"key": "code",
+											"value": "00001"
+										},
+										{
+											"key": "name",
+											"value": "Phúc Xá"
+										},
+										{
+											"key": "nameEn",
+											"value": "Phuc Xa"
+										},
+										{
+											"key": "fullName",
+											"value": "Phường Phúc Xá"
+										},
+										{
+											"key": "fullNameEn",
+											"value": "Phuc Xa Ward"
+										},
+										{
+											"key": "codeName",
+											"value": "phuc_xa"
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "sortBy",
+											"value": "code"
+										},
+										{
+											"key": "sortDir",
+											"value": "asc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Tạo ward",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Phúc Xá\",\r\n    \"nameEn\": \"Phuc Xa\",\r\n    \"fullName\": \"Phường Phúc Xá\",\r\n    \"fullNameEn\": \"Phuc Xa Ward\",\r\n    \"codeName\": \"phuc_xa\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/admin/ward/create?districtCode=001&code=P002",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"ward",
+										"create"
+									],
+									"query": [
+										{
+											"key": "districtCode",
+											"value": "001"
+										},
+										{
+											"key": "code",
+											"value": "P002"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sửa ward",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Phúc Xá\",\r\n    \"nameEn\": \"Phuc Xa\",\r\n    \"fullName\": \"Phường Phúc Xá\",\r\n    \"fullNameEn\": \"Phuc Xa Ward\",\r\n    \"codeName\": \"phuc_xa\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/admin/ward/update?districtCode=001&code=P002",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"ward",
+										"update"
+									],
+									"query": [
+										{
+											"key": "districtCode",
+											"value": "001"
+										},
+										{
+											"key": "code",
+											"value": "P002"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Xoá ward",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/ward/delete?code=P001",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"ward",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "code",
+											"value": "P001"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy chi tiết ward",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/ward/detail?code=00001",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"ward",
+										"detail"
+									],
+									"query": [
+										{
+											"key": "code",
+											"value": "00001"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "COMMON",
+			"item": [
+				{
+					"name": "Auth Controller",
+					"item": [
+						{
+							"name": "Xác nhận code quên mật khẩu",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"emailRequest\": \"tieuluanchuyennganh@gmail.com\",\r\n  \"code\": \"6be77662-d\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/verify-code",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"verify-code"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Đổi mật khẩu từ quên mật khẩu",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"tieuluanchuyennganh@gmail.com\",\r\n  \"oldPassword\": \"123456789\",\r\n  \"newPassword\": \"Ngonghia09@#$\",\r\n  \"repeatPassword\": \"Ngonghia09@#$\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/reset-password",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"reset-password"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Gửi lại mã code đăng ký",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"emailRequest\": \"string\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/resend-register-verification-code",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"resend-register-verification-code"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Gửi lại mã code quên mật khẩu",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"emailRequest\": \"string\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/resend-forgot-password-verification-code",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"resend-forgot-password-verification-code"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Đăng ký",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"username\": \"tlcn\",\r\n  \"email\": \"ngoquangnghia111003@gmail.com\",\r\n  \"password\": \"Ngonghia09@#$\",\r\n  \"confirmPassword\": \"Ngonghia09@#$\",\r\n  \"phone\": \"0909543484\",\r\n  \"gender\": \"NAM\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Đăng nhập",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const res = pm.response.json(); \r",
+											"const accessToken = res.data.accessToken;\r",
+											"const refreshToken = res.data.refreshToken;\r",
+											"\r",
+											"if (accessToken) {\r",
+											"    pm.environment.set(\"accessToken\", accessToken);\r",
+											"}\r",
+											"\r",
+											"if (refreshToken) {\r",
+											"    pm.environment.set(\"refreshToken\", refreshToken);\r",
+											"}\r",
+											"\r",
+											"console.log(\"Saved accessToken:\", pm.environment.get(\"accessToken\"));\r",
+											"console.log(\"Saved refreshToken:\", pm.environment.get(\"refreshToken\"));\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"tuvanvien01@hcmute.edu.vn\",\r\n  \"password\": \"123456789\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Quên mật khẩu",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"emailRequest\": \"tieuluanchuyennganh@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/forgot-password",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"forgot-password"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Xác nhận code đăng ký",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"emailRequest\": \"ngoquangnghia111003@gmail.com\",\r\n  \"token\": \"82e3118c-c\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/confirm-registration",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"confirm-registration"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Thay đổi gmail đăng ký",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"oldEmail\": \"tlcn2024@gmail.com\",\r\n  \"newEmail\": \"tlcn@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/change-email",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"change-email"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Refresh token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const res = pm.response.json(); \r",
+											"const accessToken = res.data.accessToken;\r",
+											"const refreshToken = res.data.refreshToken;\r",
+											"\r",
+											"if (accessToken) {\r",
+											"    pm.environment.set(\"accessToken\", accessToken);\r",
+											"}\r",
+											"\r",
+											"if (refreshToken) {\r",
+											"    pm.environment.set(\"refreshToken\", refreshToken);\r",
+											"}\r",
+											"\r",
+											"console.log(\"Saved accessToken:\", pm.environment.get(\"accessToken\"));\r",
+											"console.log(\"Saved refreshToken:\", pm.environment.get(\"refreshToken\"));\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"refreshToken\": \"{{refreshToken}}\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/refresh",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"refresh"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Export Import Controller",
+					"item": [
+						{
+							"name": "Export",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"dataType\": \"field\",\r\n  \"exportType\": \"pdf\",\r\n  \"page\": 0,\r\n  \"size\": 50,\r\n  \"sortBy\": \"createdAt\",\r\n  \"sortDir\": \"desc\",\r\n  \"startDate\": \"2023-01-01\",\r\n  \"endDate\": \"2023-12-31\",\r\n  \"conversationId\": 123, \r\n  \"departId\": \"456\", \r\n  \"title\": \"Consultation\",\r\n  \"toDepartmentId\": 789,\r\n  \"status\": \"active\",\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"johndoe@example.com\",\r\n  \"username\": \"johndoe\",\r\n  \"isOnline\": true,\r\n  \"isActivity\": false,\r\n  \"id\": 101112,\r\n  \"line\": \"123 Main St\",\r\n  \"provinceCode\": \"PROV01\",\r\n  \"districtCode\": \"DIST01\",\r\n  \"wardCode\": \"WARD01\",\r\n  \"code\": \"CODE123\",\r\n  \"nameEn\": \"English Name\",\r\n  \"fullName\": \"Full Name\",\r\n  \"fullNameEn\": \"Full Name in English\",\r\n  \"codeName\": \"Code Name\",\r\n  \"roleId\": 131415,\r\n  \"studentCode\": \"STUD1234\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/export?dataType=question&exportType=pdf&page=0&sortBy=createdAt&sortDir=desc&size=5&departmentId=1&statusApproval=false",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"export"
+									],
+									"query": [
+										{
+											"key": "startDate",
+											"value": "2023-01-01",
+											"disabled": true
+										},
+										{
+											"key": "endDate",
+											"value": "2023-12-31",
+											"disabled": true
+										},
+										{
+											"key": "conversationId",
+											"value": "123",
+											"disabled": true
+										},
+										{
+											"key": "departId",
+											"value": "456",
+											"disabled": true
+										},
+										{
+											"key": "title",
+											"value": "Consultation",
+											"disabled": true
+										},
+										{
+											"key": "toDepartmentId",
+											"value": "789",
+											"disabled": true
+										},
+										{
+											"key": "status",
+											"value": "active",
+											"disabled": true
+										},
+										{
+											"key": "name",
+											"value": "John%20Doe",
+											"disabled": true
+										},
+										{
+											"key": "email",
+											"value": "johndoe@example.com",
+											"disabled": true
+										},
+										{
+											"key": "username",
+											"value": "johndoe",
+											"disabled": true
+										},
+										{
+											"key": "isOnline",
+											"value": "true",
+											"disabled": true
+										},
+										{
+											"key": "isActivity",
+											"value": "false",
+											"disabled": true
+										},
+										{
+											"key": "id",
+											"value": "101112",
+											"disabled": true
+										},
+										{
+											"key": "line",
+											"value": "123%20Main%20St",
+											"disabled": true
+										},
+										{
+											"key": "provinceCode",
+											"value": "PROV01",
+											"disabled": true
+										},
+										{
+											"key": "districtCode",
+											"value": "DIST01",
+											"disabled": true
+										},
+										{
+											"key": "wardCode",
+											"value": "WARD01",
+											"disabled": true
+										},
+										{
+											"key": "code",
+											"value": "CODE123",
+											"disabled": true
+										},
+										{
+											"key": "nameEn",
+											"value": "English%20Name",
+											"disabled": true
+										},
+										{
+											"key": "fullName",
+											"value": "Full%20Name",
+											"disabled": true
+										},
+										{
+											"key": "fullNameEn",
+											"value": "Full%20Name%20in%20English",
+											"disabled": true
+										},
+										{
+											"key": "codeName",
+											"value": "Code%20Name",
+											"disabled": true
+										},
+										{
+											"key": "roleId",
+											"value": "131415",
+											"disabled": true
+										},
+										{
+											"key": "studentCode",
+											"value": "STUD1234",
+											"disabled": true
+										},
+										{
+											"key": "statusPublic",
+											"value": "false",
+											"disabled": true
+										},
+										{
+											"key": "accountId",
+											"value": "61",
+											"disabled": true
+										},
+										{
+											"key": "dataType",
+											"value": "question"
+										},
+										{
+											"key": "exportType",
+											"value": "pdf"
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "sortBy",
+											"value": "createdAt"
+										},
+										{
+											"key": "sortDir",
+											"value": "desc"
+										},
+										{
+											"key": "size",
+											"value": "5"
+										},
+										{
+											"key": "departmentId",
+											"value": "1"
+										},
+										{
+											"key": "statusApproval",
+											"value": "false"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Import",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/NgoQuangNghia/Downloads/RoleAsks_(06_12_2024_18_51_58)_ADMIN  2024.csv.csv"
+										},
+										{
+											"key": "importType",
+											"value": "role",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/import",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"import"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "File Upload Controller",
+					"item": [
+						{
+							"name": "Upload",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/NgoQuangNghia/Downloads/CV_NgoQuangNghia.rar"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/upload?file",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"upload"
+									],
+									"query": [
+										{
+											"key": "file",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Upload Cloudinary",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/NgoQuangNghia/Downloads/Transcript_NgoQuangNghia (2).png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/cloudinary/upload",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"cloudinary",
+										"upload"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Guest Controller",
+					"item": [
+						{
+							"name": "Lấy danh sách tư vấn viên",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/list-consultant?page=0&size=10&sortBy=firstName&sortDir=desc",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"list-consultant"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Tư Vấn  Viên 9 ",
+											"disabled": true
+										},
+										{
+											"key": "departmentId",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "sortBy",
+											"value": "firstName"
+										},
+										{
+											"key": "sortDir",
+											"value": "desc"
+										},
+										{
+											"key": "startDate",
+											"value": "2024-09-06",
+											"disabled": true
+										},
+										{
+											"key": "endDate",
+											"value": "2024-09-06",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy tư vấn viên từ phòng ban",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/list-consultant-by-department?departmentId=14",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"list-consultant-by-department"
+									],
+									"query": [
+										{
+											"key": "departmentId",
+											"value": "14"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy danh sách tư vấn viên giảng viên từ phòng ban",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/list-consultant-teacher-by-department?departmentId=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"list-consultant-teacher-by-department"
+									],
+									"query": [
+										{
+											"key": "departmentId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy danh sách tư vấn viên sinh viên từ phòng ban",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/list-consultant-student-by-department?departmentId=2",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"list-consultant-student-by-department"
+									],
+									"query": [
+										{
+											"key": "departmentId",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy danh sách câu hỏi chung",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{baseUrl}}/list-common-question?page=0&size=10&sortBy=title&sortDir=asc",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"list-common-question"
+									],
+									"query": [
+										{
+											"key": "departmentId",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "title",
+											"value": "Câu hỏi 1",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "sortBy",
+											"value": "title"
+										},
+										{
+											"key": "sortDir",
+											"value": "asc"
+										},
+										{
+											"key": "startDate",
+											"value": "2024-09-06",
+											"disabled": true
+										},
+										{
+											"key": "endDate",
+											"value": "2024-09-06",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Danh sách department",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/list-department",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"list-department"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Danh sách field từ department",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/list-field-by-department?departmentId=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"list-field-by-department"
+									],
+									"query": [
+										{
+											"key": "departmentId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy danh sách câu hỏi",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "https://nam4hocky1tlcn-production.up.railway.app/api/v1/list-question?departmentId=1&page=0&size=20&sortBy=createdAt&sortDir=desc",
+									"protocol": "https",
+									"host": [
+										"nam4hocky1tlcn-production",
+										"up",
+										"railway",
+										"app"
+									],
+									"path": [
+										"api",
+										"v1",
+										"list-question"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "NOT_ANSWERED",
+											"disabled": true
+										},
+										{
+											"key": "title",
+											"value": "câu hỏi 1",
+											"disabled": true
+										},
+										{
+											"key": "departmentId",
+											"value": "1"
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "20"
+										},
+										{
+											"key": "sortBy",
+											"value": "createdAt"
+										},
+										{
+											"key": "sortDir",
+											"value": "desc"
+										},
+										{
+											"key": "startDate",
+											"value": "2024-09-01",
+											"disabled": true
+										},
+										{
+											"key": "endDate",
+											"value": "2024-09-16",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy trạng thái câu hỏi",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/list-filter-status-options",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"list-filter-status-options"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy danh sách role đặt câu hỏi",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/user/question/role-ask",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"question",
+										"role-ask"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy tất cả bình luận của bài viết",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/comment/get-comment-by-post?postId=2",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"comment",
+										"get-comment-by-post"
+									],
+									"query": [
+										{
+											"key": "postId",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy danh sách thích của bình luận",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/like-records/comment?commentId=3",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"like-records",
+										"comment"
+									],
+									"query": [
+										{
+											"key": "commentId",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Đếm lượt like cho bài viết",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/like-count/post?postId=3",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"like-count",
+										"post"
+									],
+									"query": [
+										{
+											"key": "postId",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Đếm lượt like cho bình luận",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/like-count/comment?commentId=5",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"like-count",
+										"comment"
+									],
+									"query": [
+										{
+											"key": "commentId",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Đếm lượt like cho câu hỏi",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/like-count/question?questionId=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"like-count",
+										"question"
+									],
+									"query": [
+										{
+											"key": "questionId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy danh sách thích của bài viết",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/like-records/post?postId=3",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"like-records",
+										"post"
+									],
+									"query": [
+										{
+											"key": "postId",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Notification Controller",
+					"item": [
+						{
+							"name": "Lấy các thông báo của người dùng",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/notification",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"notification"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy danh sách thông báo của người dùng",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/user/notifications/list",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"notifications",
+										"list"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User Controller",
+					"item": [
+						{
+							"name": "Thay đổi mật khẩu",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"currentPassword\": \"123456789\",\r\n  \"newPassword\": \"Ngonghia09@#$\",\r\n  \"confirmNewPassword\": \"Ngonghia09@#$\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/profile/change-password",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"profile",
+										"change-password"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Xem thông tin cá nhân",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/profile",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"profile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Thay đổi thông tin cá nhân",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"value": "",
+											"type": "file"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/profile/update?username=new_username&studentCode=12345678&schoolName=HCMUTE&firstName=Nguyencccc&lastName=Ba&phone=0901234567&gender=NAM&email=truongtuvan1@hcmute.edu.vn&addressLine=123+Main+St&provinceCode=79&districtCode=760&wardCode=26734",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"profile",
+										"update"
+									],
+									"query": [
+										{
+											"key": "username",
+											"value": "new_username"
+										},
+										{
+											"key": "studentCode",
+											"value": "12345678"
+										},
+										{
+											"key": "schoolName",
+											"value": "HCMUTE"
+										},
+										{
+											"key": "firstName",
+											"value": "Nguyencccc"
+										},
+										{
+											"key": "lastName",
+											"value": "Ba"
+										},
+										{
+											"key": "phone",
+											"value": "0901234567"
+										},
+										{
+											"key": "gender",
+											"value": "NAM"
+										},
+										{
+											"key": "email",
+											"value": "truongtuvan1@hcmute.edu.vn"
+										},
+										{
+											"key": "addressLine",
+											"value": "123+Main+St"
+										},
+										{
+											"key": "provinceCode",
+											"value": "79"
+										},
+										{
+											"key": "districtCode",
+											"value": "760"
+										},
+										{
+											"key": "wardCode",
+											"value": "26734"
+										},
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy danh sách thành phố",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/address/provinces",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"address",
+										"provinces"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy danh sách quận huyện",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/address/districts?provinceCode=01",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"address",
+										"districts"
+									],
+									"query": [
+										{
+											"key": "provinceCode",
+											"value": "01"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lấy danh sách phường xã",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/address/wards?districtCode=001",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"address",
+										"wards"
+									],
+									"query": [
+										{
+											"key": "districtCode",
+											"value": "001"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "STATISTIC",
+			"item": [
+				{
+					"name": "Statistic Admin Controller",
+					"item": [
+						{
+							"name": "Thống kê tổng",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/statistics",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"statistics"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Thống kê tài khoản",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/statistics/accounts/yearly?year=2024",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"statistics",
+										"accounts",
+										"yearly"
+									],
+									"query": [
+										{
+											"key": "year",
+											"value": "2024"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Thống kê phòng ban",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/statistics/accounts/yearly?year=2024",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"statistics",
+										"accounts",
+										"yearly"
+									],
+									"query": [
+										{
+											"key": "year",
+											"value": "2024"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Thống kê lĩnh vực",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/statistics/fields/yearly?year=2024&departmentId=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"statistics",
+										"fields",
+										"yearly"
+									],
+									"query": [
+										{
+											"key": "year",
+											"value": "2024"
+										},
+										{
+											"key": "departmentId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Thống kê quyền hỏi",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/statistics/role-asks/yearly?year=2024",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"statistics",
+										"role-asks",
+										"yearly"
+									],
+									"query": [
+										{
+											"key": "year",
+											"value": "2024"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Thống kê quyền tư vấn",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/statistics/role-consultants/yearly?year=2024",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"statistics",
+										"role-consultants",
+										"yearly"
+									],
+									"query": [
+										{
+											"key": "year",
+											"value": "2024"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Thống kê quyền người dùng",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/statistics/roles/yearly?year=2024",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"statistics",
+										"roles",
+										"yearly"
+									],
+									"query": [
+										{
+											"key": "year",
+											"value": "2024"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Statistic Consultant Advisor Admin Controller",
+					"item": [
+						{
+							"name": "Thống kê tổng",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/statistics",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"statistics"
+									],
+									"query": [
+										{
+											"key": "startDate",
+											"value": "2023-01-01",
+											"disabled": true
+										},
+										{
+											"key": "endDate",
+											"value": "2024-12-30",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Thống kê các câu hỏi đã bị xóa",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/statistics/questions-deleted/yearly?year=2024",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"statistics",
+										"questions-deleted",
+										"yearly"
+									],
+									"query": [
+										{
+											"key": "year",
+											"value": "2024"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Thống kê các câu hỏi chuyển tiếp",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/statistics/questions-forwarded/yearly?year=2024",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"statistics",
+										"questions-forwarded",
+										"yearly"
+									],
+									"query": [
+										{
+											"key": "year",
+											"value": "2024"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Thống kê các câu trả lời đã đưa ra",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/statistics/answers-given/yearly?year=2024",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"statistics",
+										"answers-given",
+										"yearly"
+									],
+									"query": [
+										{
+											"key": "year",
+											"value": "2024"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Thống kê các câu trả lời cần duyệt",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/statistics/answer-approval/yearly?year=2024",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"statistics",
+										"answer-approval",
+										"yearly"
+									],
+									"query": [
+										{
+											"key": "year",
+											"value": "2024"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Thống kê các lịch tư vấn",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/statistics/consultation-schedules/yearly?year=2024",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"statistics",
+										"consultation-schedules",
+										"yearly"
+									],
+									"query": [
+										{
+											"key": "year",
+											"value": "2024"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Thống kê các phòng chat",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/statistics/conversations/yearly?year=2024",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"statistics",
+										"conversations",
+										"yearly"
+									],
+									"query": [
+										{
+											"key": "year",
+											"value": "2024"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Thống kê các đánh giá",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/statistics/ratings/yearly?year=2024",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"statistics",
+										"ratings",
+										"yearly"
+									],
+									"query": [
+										{
+											"key": "year",
+											"value": "2024"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Thống kê các bài đăng",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/statistics/ratings/yearly?year=2024",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"statistics",
+										"ratings",
+										"yearly"
+									],
+									"query": [
+										{
+											"key": "year",
+											"value": "2024"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Thống kê các câu hỏi chung",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/statistics/common-questions/yearly?year=2024",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"statistics",
+										"common-questions",
+										"yearly"
+									],
+									"query": [
+										{
+											"key": "year",
+											"value": "2024"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Thống kê tư vấn bằng tin nhắn",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/statistics/consultingByMessage/yearly?year=2024",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"statistics",
+										"consultingByMessage",
+										"yearly"
+									],
+									"query": [
+										{
+											"key": "year",
+											"value": "2024"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Statistic User Controller",
+					"item": [
+						{
+							"name": "Thống kê tổng",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/user/statistics",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"statistics"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Thống kê câu hỏi theo năm và trạng thái",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/user/statistics/questions-status/yearly?statusKey=PUBLIC&year=2024",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"statistics",
+										"questions-status",
+										"yearly"
+									],
+									"query": [
+										{
+											"key": "statusKey",
+											"value": "PUBLIC"
+										},
+										{
+											"key": "year",
+											"value": "2024"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Thống kê đánh giá",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/user/statistics/ratings/yearly?year=2024",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"statistics",
+										"ratings",
+										"yearly"
+									],
+									"query": [
+										{
+											"key": "year",
+											"value": "2024"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Thống kê lịch tư vấn",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/user/statistics/consultationSchedule/yearly?year=2024",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"statistics",
+										"consultationSchedule",
+										"yearly"
+									],
+									"query": [
+										{
+											"key": "year",
+											"value": "2024"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Thống kê phòng chat tạo ra",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/user/statistics/conversations/yearly?year=2024",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"statistics",
+										"conversations",
+										"yearly"
+									],
+									"query": [
+										{
+											"key": "year",
+											"value": "2024"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Thống kê phòng chat tham gia",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/user/statistics/conversationsMember/yearly?year=2024",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"statistics",
+										"conversationsMember",
+										"yearly"
+									],
+									"query": [
+										{
+											"key": "year",
+											"value": "2024"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"token\":\"eyJhbGciOiJSUzI1NiIsImtpZCI6IjJjOGEyMGFmN2ZjOThmOTdmNDRiMTQyYjRkNWQwODg0ZWIwOTM3YzQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI3MzkzOTUwMDE5NDMtYjlnNTRrcjRkaDhydnFqcGQzbnNwY3ZvazRhNjF1ZzQuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI3MzkzOTUwMDE5NDMtYjlnNTRrcjRkaDhydnFqcGQzbnNwY3ZvazRhNjF1ZzQuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDE4Njc4NTIzNDk2MzIxMzIxMDkiLCJlbWFpbCI6ImtoYWNoaGFuZ2xhb25nbm9pMDFAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsIm5iZiI6MTczMzUwNTY4NSwibmFtZSI6Ik5naMSpYSBOZ8O0IFF1YW5nIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0stNVNEcENWX3lyUHhDWklsVldZdjZGeEZmU0pOcFBSNjZaVHluMDE3NWtDMUFJQT1zOTYtYyIsImdpdmVuX25hbWUiOiJOZ2jEqWEiLCJmYW1pbHlfbmFtZSI6Ik5nw7QgUXVhbmciLCJpYXQiOjE3MzM1MDU5ODUsImV4cCI6MTczMzUwOTU4NSwianRpIjoiNDM5MWIyOWYxZDY4ZmM4YjU0MmYwZWU2OGI3ZTZmZDg2OWZmMWY5NCJ9.ea8R-Rnt1eKrlUy0svhQvee1zTi6kR3BQZdLm0jp8XAnVIR9PxwAeXE8z-durneKviDxeEV3Wfb3fM9xr-7XpF_9DessHzh0BdcaEuYWElNuAlkHUCk-_-FCgZ4_v1_vc-nhjO39yJi_7SORn73bbEac3GBmCtEuE9QDZaA73p9uHp4O4QJhHnSyRYXpkqOve_fORO6uwpi3lXqJ4crXI3U5rzzbPo0xgyO8IqoZHGpx3sxPmd7QP67IgFvQVPNFE2DJbtD18OsR3z_Lr1R3PDJXQv4VKnmJ1q6f4hzlQoRLYkmmtzYeJyoGZfvmumJj60XmZ3W5OYWMB5OadOjbFg\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/google",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"google"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "Token",
+			"value": "s"
+		}
+	]
+}

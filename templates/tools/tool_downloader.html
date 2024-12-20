@@ -1,0 +1,258 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    .tool-card {
+        transition: transform 0.2s;
+        height: 100%;
+        position: relative;
+    }
+    
+    .tool-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    .tool-icon {
+        font-size: 3.5rem;
+        color: #0d6efd;
+        margin: 1rem 0;
+    }
+    
+    .latest-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: #28a745;
+        color: white;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+    }
+
+    .category-tabs {
+        margin-bottom: 2rem;
+    }
+
+    .category-tabs .btn {
+        padding: 0.5rem 1.5rem;
+        margin-right: 0.5rem;
+    }
+
+    .version-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+    }
+
+    .version-modal.show {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .version-modal-content {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        width: 90%;
+        max-width: 500px;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    }
+
+    .version-item {
+        padding: 1rem;
+        margin: 0.5rem 0;
+        border: 1px solid #dee2e6;
+        border-radius: 0.25rem;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .version-item:hover {
+        background-color: #f8f9fa;
+        transform: translateY(-2px);
+    }
+
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    .modal-close {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #6c757d;
+    }
+
+    .modal-close:hover {
+        color: #343a40;
+    }
+</style>
+
+<div class="container-fluid mt-4">
+    <h2 class="mb-4">Tool Downloader</h2>
+    
+    <!-- Category Tabs -->
+    <div class="category-tabs">
+        <button class="btn btn-primary active" data-category="all">All</button>
+        <button class="btn btn-outline-primary" data-category="Browsers">Browsers</button>
+        <button class="btn btn-outline-primary" data-category="Environment">Environment</button>
+        <button class="btn btn-outline-primary" data-category="Development">Development</button>
+        <button class="btn btn-outline-primary" data-category="Database">Database</button>
+        <button class="btn btn-outline-primary" data-category="Communication">Communication</button>
+        <button class="btn btn-outline-primary" data-category="Utilities">Utilities</button>
+    </div>
+    
+    <!-- Tools Grid -->
+    <div class="row g-4">
+        {% for tool in tools %}
+        <div class="col-md-6 col-lg-4 tool-item" data-category="{{ tool.category }}">
+            <div class="card tool-card">
+                <div class="card-body text-center">
+                    <span class="latest-badge">Latest</span>
+                    
+                    <!-- Tool Icon -->
+                    <i class="{{ tool.icon }} tool-icon"></i>
+
+                    <h5 class="card-title">{{ tool.name }}</h5>
+                    <p class="card-text">{{ tool.description }}</p>
+
+                    <div class="download-container">
+                        <button class="btn btn-primary download-btn" data-tool-id="{{ tool.id }}">
+                            <i class="fas fa-download me-2"></i>Download
+                        </button>
+                        
+                        <div class="version-modal" id="versions-{{ tool.id }}">
+                            {% for version in tool.versions %}
+                            <div class="version-item" data-url="{{ version.url }}">
+                                {{ version.name }}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Thêm modal vào cuối trang -->
+<div class="version-modal" id="versionModal">
+    <div class="version-modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Select Version</h5>
+            <button class="modal-close">&times;</button>
+        </div>
+        <div class="version-list">
+            <!-- Versions will be inserted here dynamically -->
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Category filter
+    const categoryButtons = document.querySelectorAll('.category-tabs .btn');
+    const toolItems = document.querySelectorAll('.tool-item');
+    
+    categoryButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            categoryButtons.forEach(btn => btn.classList.remove('active', 'btn-primary'));
+            categoryButtons.forEach(btn => btn.classList.add('btn-outline-primary'));
+            this.classList.remove('btn-outline-primary');
+            this.classList.add('active', 'btn-primary');
+            
+            const category = this.dataset.category;
+            
+            toolItems.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    // Close all dropdowns when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.download-container')) {
+            document.querySelectorAll('.version-modal').forEach(dropdown => {
+                dropdown.classList.remove('show');
+            });
+        }
+    });
+
+    const modal = document.getElementById('versionModal');
+    const modalClose = modal.querySelector('.modal-close');
+    const versionList = modal.querySelector('.version-list');
+
+    // Download button click handler
+    const downloadButtons = document.querySelectorAll('.download-btn');
+    downloadButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const toolId = this.dataset.toolId;
+            const tool = findToolById(toolId);
+            
+            if (tool && tool.versions) {
+                // Populate modal with versions
+                versionList.innerHTML = tool.versions.map(version => `
+                    <div class="version-item" data-url="${version.url}">
+                        ${version.name}
+                    </div>
+                `).join('');
+                
+                // Show modal
+                modal.classList.add('show');
+            }
+        });
+    });
+
+    // Close modal when clicking close button or outside
+    modalClose.addEventListener('click', () => {
+        modal.classList.remove('show');
+    });
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('show');
+        }
+    });
+
+    // Version selection
+    versionList.addEventListener('click', (e) => {
+        const versionItem = e.target.closest('.version-item');
+        if (versionItem) {
+            const url = versionItem.dataset.url;
+            if (url) {
+                window.open(url, '_blank');
+                modal.classList.remove('show');
+            }
+        }
+    });
+
+    // Helper function to find tool by ID
+    function findToolById(id) {
+        const toolCard = document.querySelector(`[data-tool-id="${id}"]`).closest('.tool-card');
+        if (toolCard) {
+            const versions = Array.from(toolCard.querySelectorAll('.version-item')).map(item => ({
+                name: item.textContent.trim(),
+                url: item.dataset.url
+            }));
+            return { versions };
+        }
+        return null;
+    }
+});
+</script>
+{% endblock %} 

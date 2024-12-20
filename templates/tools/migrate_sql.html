@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block title %}Migrate SQL Tool{% endblock %}
+
+{% block content %}
+<div class="row g-0">
+    <div class="col-12">
+        <h2 class="mb-4">Migrate SQL Tool</h2>
+        <p>Convert SQL Server scripts to MySQL format.</p>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <form id="uploadForm">
+                    <div class="mb-3">
+                        <label for="sqlFile" class="form-label">SQL Server Script File</label>
+                        <input type="file" class="form-control" id="sqlFile" accept=".sql" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Options</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="convertDataTypes" checked>
+                            <label class="form-check-label" for="convertDataTypes">
+                                Convert Data Types
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="convertFunctions" checked>
+                            <label class="form-check-label" for="convertFunctions">
+                                Convert Functions
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="convertSyntax" checked>
+                            <label class="form-check-label" for="convertSyntax">
+                                Convert Syntax
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Convert</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4" id="results" style="display: none;">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Converted MySQL Script</h5>
+                <div class="d-flex justify-content-end mb-2">
+                    <button class="btn btn-secondary btn-sm" id="copyBtn">Copy to Clipboard</button>
+                </div>
+                <pre id="convertedSql" class="bg-light p-3 mt-3"></pre>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const fileInput = document.getElementById('sqlFile');
+    const file = fileInput.files[0];
+    
+    if (!file) {
+        alert('Please select a file');
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('convertDataTypes', document.getElementById('convertDataTypes').checked);
+    formData.append('convertFunctions', document.getElementById('convertFunctions').checked);
+    formData.append('convertSyntax', document.getElementById('convertSyntax').checked);
+
+    try {
+        const response = await fetch('/tools/migrate-sql', {
+            method: 'POST',
+            body: formData
+        });
+
+        const data = await response.json();
+        
+        if (response.ok) {
+            document.getElementById('convertedSql').textContent = data.result;
+            document.getElementById('results').style.display = 'block';
+        } else {
+            alert(data.error || 'An error occurred');
+        }
+    } catch (error) {
+        alert('An error occurred while processing the file');
+    }
+});
+
+document.getElementById('copyBtn').addEventListener('click', () => {
+    const convertedSql = document.getElementById('convertedSql').textContent;
+    navigator.clipboard.writeText(convertedSql).then(() => {
+        alert('Copied to clipboard!');
+    });
+});
+</script>
+{% endblock %} 

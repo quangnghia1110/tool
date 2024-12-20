@@ -1,0 +1,220 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    <h2 class="mb-4">YouTube to MP3 Converter</h2>
+    <div class="card">
+        <div class="card-body">
+            <form id="youtubeForm">
+                <div class="form-group mb-3">
+                    <label for="youtubeUrl">YouTube URL:</label>
+                    <input type="text" class="form-control" id="youtubeUrl"
+                        name="url"
+                        placeholder="Enter YouTube URL" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Xem thông tin
+                    video</button>
+            </form>
+
+            <!-- Thông tin video -->
+            <div id="videoInfo" class="mt-3" style="display: none;">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img id="thumbnail" class="img-fluid rounded"
+                                    src alt="Video thumbnail">
+                            </div>
+                            <div class="col-md-8">
+                                <h5 id="videoTitle" class="card-title"></h5>
+                                <button id="showFormatsBtn"
+                                    class="btn btn-success mt-2">
+                                    Xem các tùy chọn tải xuống
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tùy chọn định dạng -->
+            <div id="formatOptions" class="mt-3" style="display: none;">
+                <div class="card">
+                    <div class="card-body">
+                        <h5>Chọn định dạng tải xuống:</h5>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Định dạng</th>
+                                        <th>Kích thước</th>
+                                        <th>Hành động</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="formatList">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tiến trình tải xuống -->
+            <div id="downloadProgress" class="mt-3" style="display: none;">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 id="downloadTitle" class="mb-2"></h6>
+                        <div class="progress mb-2" style="height: 20px;">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                role="progressbar"
+                                style="width: 0%; transition: width 0.1s ease;">
+                                <span class="progress-text" style="font-size: 0.8rem; position: absolute; width: 100%; text-align: center; color: white;">0%</span>
+                            </div>
+                        </div>
+                        <div class="text-muted">
+                            <small id="downloadStatus"></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="error" class="mt-3 alert alert-danger"
+                style="display: none;"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+let currentVideoUrl = '';
+let currentVideoTitle = '';
+
+document.getElementById('youtubeForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const url = document.getElementById('youtubeUrl').value;
+    const videoInfo = document.getElementById('videoInfo');
+    const formatOptions = document.getElementById('formatOptions');
+    const errorDiv = document.getElementById('error');
+    
+    // Reset displays
+    videoInfo.style.display = 'none';
+    formatOptions.style.display = 'none';
+    errorDiv.style.display = 'none';
+    
+    try {
+        const response = await fetch('/get-formats', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ url: url })
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok) {
+            // Lưu thông tin video
+            currentVideoUrl = url;
+            currentVideoTitle = data.title;
+            
+            // Hiển thị thông tin video
+            document.getElementById('videoTitle').textContent = data.title;
+            document.getElementById('thumbnail').src = `https://img.youtube.com/vi/${getVideoId(url)}/maxresdefault.jpg`;
+            videoInfo.style.display = 'block';
+            
+            // Chuẩn bị danh sách format
+            const formatList = document.getElementById('formatList');
+            formatList.innerHTML = '';
+            
+            data.formats.forEach(format => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>Audio ${format.quality}</td>
+                    <td>${format.filesize}</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" onclick="downloadFormat('${url}', '${format.format_id}', '${data.title}')">
+                            Tải xuống
+                        </button>
+                    </td>
+                `;
+                formatList.appendChild(row);
+            });
+        } else {
+            throw new Error(data.error);
+        }
+    } catch (error) {
+        errorDiv.textContent = error.message;
+        errorDiv.style.display = 'block';
+    }
+});
+
+// Nút hiển thị tùy chọn tải xuống
+document.getElementById('showFormatsBtn').addEventListener('click', function() {
+    document.getElementById('formatOptions').style.display = 'block';
+});
+
+function getVideoId(url) {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? match[2] : null;
+}
+
+async function downloadFormat(url, formatId, title) {
+    const progress = document.getElementById('downloadProgress');
+    const progressBar = progress.querySelector('.progress-bar');
+    const progressText = progress.querySelector('.progress-text');
+    const status = document.getElementById('downloadStatus');
+    const downloadTitle = document.getElementById('downloadTitle');
+    
+    progress.style.display = 'block';
+    progressBar.style.width = '0%';
+    progressText.textContent = '0%';
+    downloadTitle.textContent = title;
+    status.textContent = 'Starting download...';
+    
+    try {
+        const response = await fetch(`/download-format?url=${encodeURIComponent(url)}&format=${formatId}`);
+        const reader = response.body.getReader();
+
+        while (true) {
+            const {done, value} = await reader.read();
+            if (done) break;
+
+            const text = new TextDecoder().decode(value);
+            const lines = text.split('\n');
+
+            for (const line of lines) {
+                if (line.startsWith('data: ')) {
+                    try {
+                        const data = JSON.parse(line.slice(6));
+                        if (data.status === 'downloading' || data.status === 'converting') {
+                            const progress = data.progress || 0;
+                            progressBar.style.width = `${progress}%`;
+                            progressText.textContent = `${Math.round(progress)}%`;
+                            status.textContent = data.text;
+                        } else if (data.status === 'complete') {
+                            progressBar.style.width = '100%';
+                            progressText.textContent = '100%';
+                            status.textContent = 'Download complete! Starting file download...';
+                            
+                            // Tự động download file
+                            if (data.download_url) {
+                                window.location.href = data.download_url;
+                            }
+                            break;
+                        } else if (data.status === 'error') {
+                            status.textContent = `Error: ${data.message}`;
+                            break;
+                        }
+                    } catch (e) {
+                        console.log('Progress update error:', e);
+                    }
+                }
+            }
+        }
+    } catch (error) {
+        status.textContent = `Error: ${error.message}`;
+        console.error('Download error:', error);
+    }
+}
+</script>
+{% endblock %}
